@@ -1,3 +1,7 @@
+# 機能をアップデートしたら build して push すること
+どうやら lib, lib_types のディレクトリがそのまま使われるようです。
+
+
 # Vue Ganttastic
 <div style="display: flex; flex-direction: column; align-items:center;">
 <img

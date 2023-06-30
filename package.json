@@ -27,7 +27,8 @@
   "files": [
     "lib_types",
     "lib/vue-ganttastic.js",
-    "lib/vue-ganttastic.umd.cjs"
+    "lib/vue-ganttastic.umd.cjs",
+    "node_modules"
   ],
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
