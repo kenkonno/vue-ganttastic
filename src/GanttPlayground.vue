@@ -5,7 +5,7 @@
     precision="day"
     :row-height="40"
     grid
-    width="100%"
+    width="1200px"
     bar-start="beginDate"
     bar-end="endDate"
     :date-format="format"

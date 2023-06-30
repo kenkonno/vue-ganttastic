@@ -1,32 +1,55 @@
 <template>
-  <div
-    ref="ganttChart"
-    class="g-gantt-chart"
-    :style="{ width, background: colors.background, fontFamily: font }"
-  >
-    <g-gantt-timeaxis v-if="!hideTimeaxis">
-      <template #upper-timeunit="{ label, value, date }">
-        <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
-        <slot name="upper-timeunit" :label="label" :value="value" :date="date" />
-      </template>
-      <template #timeunit="{ label, value, date }">
-        <!-- expose timeunit slot of g-gantt-timeaxis-->
-        <slot name="timeunit" :label="label" :value="value" :date="date" />
-      </template>
-    </g-gantt-timeaxis>
+  <div style="display:flex; overflow:scroll;"> <!-- なんかこの２重構造だとflexかつスクロールにも対応するみたい -->
+    <div style="display: flex;">
+      <!-- ここを表頭のコンポーネントとして切り出す。何も考えず Rowオブジェクトに追加してあげればいいかな。一旦any型受け付けてるし。 -->
+      <div style=" display:flex; flex-flow: column;">
+        <div class="g-timeaxis" style="width:auto;">
+          table headers
+        </div>
+        <div class="g-gantt-row" style="height: 40px; display:flex;">
+          <div> INPUT 1 </div>
+          <div> INPUT 2 </div>
+          <div> INPUT 1 </div>
+          <div> INPUT 2 </div>
+        </div>
+        <div class="g-gantt-row" style="height: 40px; display:flex;">
+          <div> INPUT 1 </div>
+          <div> INPUT 2 </div>
+          <div> INPUT 1 </div>
+          <div> INPUT 2 </div>
+        </div>
+      </div>
 
-    <g-gantt-grid v-if="grid" :highlighted-units="highlightedUnits" />
+      <div
+        ref="ganttChart"
+        class="g-gantt-chart"
+        :style="{ width, background: colors.background, fontFamily: font }"
+      >
+        <g-gantt-timeaxis v-if="!hideTimeaxis">
+          <template #upper-timeunit="{ label, value, date }">
+            <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
+            <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
+          </template>
+          <template #timeunit="{ label, value, date }">
+            <!-- expose timeunit slot of g-gantt-timeaxis-->
+            <slot name="timeunit" :label="label" :value="value" :date="date"/>
+          </template>
+        </g-gantt-timeaxis>
 
-    <div class="g-gantt-rows-container">
-      <slot />
-      <!-- the g-gantt-row components go here -->
+        <g-gantt-grid v-if="grid" :highlighted-units="highlightedUnits"/>
+
+        <div class="g-gantt-rows-container">
+          <slot/>
+          <!-- the g-gantt-row components go here -->
+        </div>
+
+        <g-gantt-bar-tooltip :model-value="showTooltip || isDragging" :bar="tooltipBar">
+          <template #default>
+            <slot name="bar-tooltip" :bar="tooltipBar"/>
+          </template>
+        </g-gantt-bar-tooltip>
+      </div>
     </div>
-
-    <g-gantt-bar-tooltip :model-value="showTooltip || isDragging" :bar="tooltipBar">
-      <template #default>
-        <slot name="bar-tooltip" :bar="tooltipBar" />
-      </template>
-    </g-gantt-bar-tooltip>
   </div>
 </template>
 
@@ -45,12 +68,12 @@ import GGanttTimeaxis from "./GGanttTimeaxis.vue"
 import GGanttGrid from "./GGanttGrid.vue"
 import GGanttBarTooltip from "./GGanttBarTooltip.vue"
 
-import { colorSchemes, type ColorScheme } from "../color-schemes.js"
-import type { ColorSchemeKey } from "../color-schemes.js"
-import { CHART_ROWS_KEY, CONFIG_KEY, EMIT_BAR_EVENT_KEY } from "../provider/symbols.js"
-import type { GanttBarObject } from "../types"
-import { DEFAULT_DATE_FORMAT } from "../composables/useDayjsHelper"
-import { useElementSize } from "@vueuse/core"
+import {colorSchemes, type ColorScheme} from "../color-schemes.js"
+import type {ColorSchemeKey} from "../color-schemes.js"
+import {CHART_ROWS_KEY, CONFIG_KEY, EMIT_BAR_EVENT_KEY} from "../provider/symbols.js"
+import type {GanttBarObject} from "../types"
+import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
+import {useElementSize} from "@vueuse/core"
 
 export interface GGanttChartProps {
   chartStart: string | Date
@@ -118,7 +141,7 @@ const emit = defineEmits<{
   ): void
 }>()
 
-const { width, font, colorScheme } = toRefs(props)
+const {width, font, colorScheme} = toRefs(props)
 
 const slots = useSlots()
 const colors = computed(() =>
@@ -180,38 +203,38 @@ const emitBarEvent = (
 ) => {
   switch (e.type) {
     case "click":
-      emit("click-bar", { bar, e, datetime })
+      emit("click-bar", {bar, e, datetime})
       break
     case "mousedown":
-      emit("mousedown-bar", { bar, e, datetime })
+      emit("mousedown-bar", {bar, e, datetime})
       break
     case "mouseup":
-      emit("mouseup-bar", { bar, e, datetime })
+      emit("mouseup-bar", {bar, e, datetime})
       break
     case "dblclick":
-      emit("dblclick-bar", { bar, e, datetime })
+      emit("dblclick-bar", {bar, e, datetime})
       break
     case "mouseenter":
       initTooltip(bar)
-      emit("mouseenter-bar", { bar, e })
+      emit("mouseenter-bar", {bar, e})
       break
     case "mouseleave":
       clearTooltip()
-      emit("mouseleave-bar", { bar, e })
+      emit("mouseleave-bar", {bar, e})
       break
     case "dragstart":
       isDragging.value = true
-      emit("dragstart-bar", { bar, e })
+      emit("dragstart-bar", {bar, e})
       break
     case "drag":
-      emit("drag-bar", { bar, e })
+      emit("drag-bar", {bar, e})
       break
     case "dragend":
       isDragging.value = false
-      emit("dragend-bar", { bar, e, movedBars })
+      emit("dragend-bar", {bar, e, movedBars})
       break
     case "contextmenu":
-      emit("contextmenu-bar", { bar, e, datetime })
+      emit("contextmenu-bar", {bar, e, datetime})
       break
   }
 }
