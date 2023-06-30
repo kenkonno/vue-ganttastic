@@ -2,7 +2,7 @@
   <g-gantt-chart
     :chart-start="chartStart"
     :chart-end="chartEnd"
-    precision="month"
+    precision="day"
     :row-height="40"
     grid
     width="100%"
@@ -30,62 +30,37 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import type { GanttBarObject } from "./types.js"
+import GGanttChart from "./components/GGanttChart.vue";
 
-const chartStart = ref("21.03.2021 12:00")
-const chartEnd = ref("15.07.2021 12:00")
+const chartStart = ref("01.05.2023 00:00")
+const chartEnd = ref("31.07.2023 00:00")
 const format = ref("DD.MM.YYYY HH:mm")
 
 const bars1 = ref<GanttBarObject[]>([
   {
-    beginDate: "24.04.2021 13:00",
-    endDate: "25.05.2021 19:00",
+    beginDate: "02.05.2023 00:00",
+    endDate: "03.05.2023 00:00",
     ganttBarConfig: {
       id: "8621987329",
-      label: "I'm in a bundle",
-      bundle: "bundle2"
+      label: "AAAAAAAAA",
+      // bundle: "bundle2"
     }
   }
 ])
 
 const bars2 = ref([
   {
-    beginDate: "24.04.2021 13:00",
-    endDate: "25.05.2021 19:00",
+    beginDate: "06.05.2023 00:00",
+    endDate: "12.05.2023 00:00",
     ganttBarConfig: {
       id: "1592311887",
-      label: "I'm in a bundle",
-      bundle: "bundle2",
+      label: "BBBBBBBBBBBB",
+      // bundle: "bundle2",
       style: {
         background: "magenta"
       }
     }
   },
-  {
-    beginDate: "01.01.2021 00:00",
-    endDate: "01.03.2021 00:00",
-    ganttBarConfig: {
-      id: "7716981641",
-      label: "Lorem ipsum dolor",
-      hasHandles: true,
-      style: {
-        background: "#b74b52"
-      }
-    }
-  },
-  {
-    beginDate: "15.06.2021 00:00",
-    endDate: "10.07.2021 00:00",
-    ganttBarConfig: {
-      id: "9716981641",
-      label: "Oh hey",
-      style: {
-        background: "#69e064",
-        borderRadius: "15px",
-        color: "blue",
-        fontSize: "10px"
-      }
-    }
-  }
 ])
 const addBar = () => {
   if (bars1.value.some((bar) => bar.ganttBarConfig.id === "test1")) {
@@ -148,6 +123,9 @@ const onDragendBar = (
   movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>
 ) => {
   console.log("dragend-bar", bar, e, movedBars)
+  // １日の始まりに合わせる操作
+  bar.beginDate = bar.beginDate.substring(0,11) + "00:00"
+  bar.endDate = bar.endDate.substring(0,11) + "00:00"
 }
 
 const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string) => {

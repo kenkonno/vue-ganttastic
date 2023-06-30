@@ -1,6 +1,10 @@
 # 機能をアップデートしたら build して push すること
 どうやら lib, lib_types のディレクトリがそのまま使われるようです。
 
+利用する側のリポジトリで下記コマンドでアップデート
+npm update @infectoone/vue-ganttastic
+
+
 
 # Vue Ganttastic
 <div style="display: flex; flex-direction: column; align-items:center;">
