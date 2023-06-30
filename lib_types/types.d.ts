@@ -11,5 +11,9 @@ export declare type GanttBarObject = {
         dragLimitLeft?: number;
         dragLimitRight?: number;
         style?: CSSProperties;
+        saaaaaaa?: CSSProperties;
     };
+};
+export declare type Test = {
+    d: string;
 };
