@@ -53,7 +53,8 @@
     "vuepress": "2.0.0-beta.51"
   },
   "peerDependencies": {
-    "vue": "^3.2.40"
+    "vue": "^3.2.40",
+    "dayjs": "^1.11.8"
   },
   "homepage": "https://infectoone.github.io/vue-ganttastic/",
   "keywords": [
