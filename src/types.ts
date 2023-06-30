@@ -12,6 +12,11 @@ export type GanttBarObject = {
     pushOnOverlap?: boolean
     dragLimitLeft?: number
     dragLimitRight?: number
-    style?: CSSProperties
+    style?: CSSProperties,
+    saaaaaaa?: CSSProperties,
   }
+}
+
+export type Test = {
+  d: string
 }
