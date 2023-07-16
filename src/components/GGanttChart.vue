@@ -122,7 +122,6 @@ const emit = defineEmits<{
     value: {
       bar: GanttBarObject
       e: MouseEvent
-      movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>
     }
   ): void
   (
@@ -221,7 +220,7 @@ const emitBarEvent = (
       break
     case "dragend":
       isDragging.value = false
-      emit("dragend-bar", {bar, e, movedBars})
+      emit("dragend-bar", {bar, e})
       break
     case "contextmenu":
       emit("contextmenu-bar", {bar, e, datetime})

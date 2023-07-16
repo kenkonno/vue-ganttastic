@@ -10,7 +10,6 @@
   >
     <div class="g-gantt-row-label" :style="{ background: colors.primary, color: colors.text }" v-if="false">
       <slot name="label">
-        {{ label }}
       </slot>
     </div>
     <div ref="barContainer" class="g-gantt-row-bars-container" v-bind="$attrs">

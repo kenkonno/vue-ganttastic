@@ -4,7 +4,6 @@ declare const _default: {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{}> & Omit<Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-            label: string;
             bars: GanttBarObject[];
             highlightOnHover?: boolean | undefined;
         }>>> & {
@@ -30,7 +29,6 @@ declare const _default: {
         }) => void;
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-            label: string;
             bars: GanttBarObject[];
             highlightOnHover?: boolean | undefined;
         }>>> & {
@@ -64,7 +62,6 @@ declare const _default: {
         $nextTick: typeof import("vue").nextTick;
         $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
     } & Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-        label: string;
         bars: GanttBarObject[];
         highlightOnHover?: boolean | undefined;
     }>>> & {
@@ -77,7 +74,6 @@ declare const _default: {
     __isTeleport?: undefined;
     __isSuspense?: undefined;
 } & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    label: string;
     bars: GanttBarObject[];
     highlightOnHover?: boolean | undefined;
 }>>> & {

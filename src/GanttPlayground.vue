@@ -16,23 +16,21 @@
     @mouseleave-bar="onMouseleaveBar($event.bar, $event.e)"
     @dragstart-bar="onDragstartBar($event.bar, $event.e)"
     @drag-bar="onDragBar($event.bar, $event.e)"
-    @dragend-bar="onDragendBar($event.bar, $event.e, $event.movedBars)"
+    @dragend-bar="onDragendBar($event.bar, $event.e)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
   >
     <g-gantt-row v-for="bar in bars" :key="bar.ganttBarConfig.id" :bars="[bar]"/>
     <!-- こっから下は上側で入れられる予定 -->
     <template #rows>
-      <div class="g-gantt-row" style="height: 40px; display:flex;" v-for="row in rows" :key="row.bar.ganttBarConfig.id">
-        <div>{{row.taskName}}</div>
-        <div><input type="number" v-model="row.numberOfWorkers" /></div>
-        <div><input type="date" :value="row.workStartDate.format('YYYY-MM-DD')" /></div>
-        <div><input type="date" v-model="row.workEndDate" /></div>
+      <div class="g-gantt-row" style="height: 40px; display:flex;" v-for="row in rows"
+           :key="row.bar.ganttBarConfig.id">
+        <div>{{ row.taskName }}</div>
+        <div><input type="number" v-model="row.numberOfWorkers"/></div>
+        <div><input type="date" :value="row.workStartDate.format('YYYY-MM-DD')"/></div>
+        <div><input type="date" v-model="row.workEndDate"/></div>
       </div>
     </template>
   </g-gantt-chart>
-
-  <button type="button" @click="addBar()">Add bar</button>
-  <button type="button" @click="deleteBar()">Delete bar</button>
 </template>
 
 <script setup lang="ts">
@@ -75,50 +73,24 @@ const newRow = (id: RowID, taskName: TaskName, numberOfWorkers: NumberOfWorkers,
     workStartDate: workStartDate,
     workEndDate: workEndDate,
   }
-  console.log("RESULT#########",result, workStartDate.toString())
+  console.log("RESULT#########", result, workStartDate.toString())
   return result
 }
 const rows = ref<Row[]>([
   newRow("id-1", "作業1", 1, dayjs('2023-05-02'), dayjs('2023-05-03')),
   newRow("id-2", "作業2", 1, dayjs('2023-05-06'), dayjs('2023-05-12'))
 ])
-const bars = rows.value.map( v =>  v.bar )
-const addBar = () => {
-  if (bars1.value.some((bar) => bar.ganttBarConfig.id === "test1")) {
-    return
-  }
-  const bar = {
-    beginDate: "26.02.2021 00:00",
-    endDate: "26.03.2021 02:00",
-    ganttBarConfig: {
-      id: "test1",
-      hasHandles: true,
-      label: "Hello!",
-      style: {
-        background: "#5484b7",
-        borderRadius: "20px"
-      }
-    }
-  }
-  bars1.value.push(bar)
-}
+const bars = rows.value.map(v => v.bar)
 
-const deleteBar = () => {
-  const idx = bars1.value.findIndex((b) => b.ganttBarConfig.id === "test1")
-  if (idx !== -1) {
-    bars1.value.splice(idx, 1)
-  }
-}
-
-const onClickBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string) => {
+const onClickBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("click-bar", bar, e, datetime)
 }
 
-const onMousedownBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string) => {
+const onMousedownBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("mousedown-bar", bar, e, datetime)
 }
 
-const onMouseupBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string) => {
+const onMouseupBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("mouseup-bar", bar, e, datetime)
 }
 
@@ -141,15 +113,14 @@ const onDragBar = (bar: GanttBarObject, e: MouseEvent) => {
 const onDragendBar = (
   bar: GanttBarObject,
   e: MouseEvent,
-  movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>
 ) => {
-  console.log("dragend-bar", bar, e, movedBars)
+  console.log("dragend-bar", bar, e)
   // １日の始まりに合わせる操作
   bar.beginDate = bar.beginDate.substring(0, 11) + "00:00"
   bar.endDate = bar.endDate.substring(0, 11) + "00:00"
 }
 
-const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string) => {
+const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("contextmenu-bar", bar, e, datetime)
 }
 </script>

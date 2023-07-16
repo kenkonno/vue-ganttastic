@@ -31,17 +31,17 @@ declare const _default: {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
-            precision: "month" | "hour" | "day";
-            rowHeight: number;
-            grid: boolean;
-            width: string;
+            precision: "hour" | "day" | "month";
             dateFormat: string | false;
-            pushOnOverlap: boolean;
-            colorScheme: string | ColorScheme;
-            font: string;
+            width: string;
             hideTimeaxis: boolean;
+            colorScheme: string | ColorScheme;
+            grid: boolean;
+            pushOnOverlap: boolean;
             noOverlap: boolean;
+            rowHeight: number;
             highlightedUnits: number[];
+            font: string;
         }> & Omit<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<GGanttChartProps>, {
             dateFormat: string;
             precision: string;
@@ -61,6 +61,11 @@ declare const _default: {
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
             "onMousedown-bar"?: ((value: {
+                bar: GanttBarObject;
+                e: MouseEvent;
+                datetime?: string | Date | undefined;
+            }) => any) | undefined;
+            "onMouseup-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
@@ -89,22 +94,13 @@ declare const _default: {
             "onDragend-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
-                movedBars?: Map<GanttBarObject, {
-                    oldStart: string;
-                    oldEnd: string;
-                }> | undefined;
             }) => any) | undefined;
             "onContextmenu-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
-            "onMouseup-bar"?: ((value: {
-                bar: GanttBarObject;
-                e: MouseEvent;
-                datetime?: string | Date | undefined;
-            }) => any) | undefined;
-        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "rowHeight" | "grid" | "width" | "dateFormat" | "pushOnOverlap" | "colorScheme" | "font" | "hideTimeaxis" | "noOverlap" | "highlightedUnits">;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "dateFormat" | "width" | "hideTimeaxis" | "colorScheme" | "grid" | "pushOnOverlap" | "noOverlap" | "rowHeight" | "highlightedUnits" | "font">;
         $attrs: {
             [x: string]: unknown;
         };
@@ -121,6 +117,10 @@ declare const _default: {
             e: MouseEvent;
             datetime?: string | Date | undefined;
         }) => void) & ((event: "mousedown-bar", value: {
+            bar: GanttBarObject;
+            e: MouseEvent;
+            datetime?: string | Date | undefined;
+        }) => void) & ((event: "mouseup-bar", value: {
             bar: GanttBarObject;
             e: MouseEvent;
             datetime?: string | Date | undefined;
@@ -143,15 +143,7 @@ declare const _default: {
         }) => void) & ((event: "dragend-bar", value: {
             bar: GanttBarObject;
             e: MouseEvent;
-            movedBars?: Map<GanttBarObject, {
-                oldStart: string;
-                oldEnd: string;
-            }> | undefined;
         }) => void) & ((event: "contextmenu-bar", value: {
-            bar: GanttBarObject;
-            e: MouseEvent;
-            datetime?: string | Date | undefined;
-        }) => void) & ((event: "mouseup-bar", value: {
             bar: GanttBarObject;
             e: MouseEvent;
             datetime?: string | Date | undefined;
@@ -180,6 +172,11 @@ declare const _default: {
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
+            "onMouseup-bar"?: ((value: {
+                bar: GanttBarObject;
+                e: MouseEvent;
+                datetime?: string | Date | undefined;
+            }) => any) | undefined;
             "onDblclick-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
@@ -204,17 +201,8 @@ declare const _default: {
             "onDragend-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
-                movedBars?: Map<GanttBarObject, {
-                    oldStart: string;
-                    oldEnd: string;
-                }> | undefined;
             }) => any) | undefined;
             "onContextmenu-bar"?: ((value: {
-                bar: GanttBarObject;
-                e: MouseEvent;
-                datetime?: string | Date | undefined;
-            }) => any) | undefined;
-            "onMouseup-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
@@ -267,10 +255,6 @@ declare const _default: {
             "dragend-bar": (value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
-                movedBars?: Map<GanttBarObject, {
-                    oldStart: string;
-                    oldEnd: string;
-                }> | undefined;
             }) => void;
         } & {
             "contextmenu-bar": (value: {
@@ -279,17 +263,17 @@ declare const _default: {
                 datetime?: string | Date | undefined;
             }) => void;
         }, string, {
-            precision: "month" | "hour" | "day";
-            rowHeight: number;
-            grid: boolean;
-            width: string;
+            precision: "hour" | "day" | "month";
             dateFormat: string | false;
-            pushOnOverlap: boolean;
-            colorScheme: string | ColorScheme;
-            font: string;
+            width: string;
             hideTimeaxis: boolean;
+            colorScheme: string | ColorScheme;
+            grid: boolean;
+            pushOnOverlap: boolean;
             noOverlap: boolean;
+            rowHeight: number;
             highlightedUnits: number[];
+            font: string;
         }> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
             created?: ((() => void) | (() => void)[]) | undefined;
@@ -333,6 +317,11 @@ declare const _default: {
             e: MouseEvent;
             datetime?: string | Date | undefined;
         }) => any) | undefined;
+        "onMouseup-bar"?: ((value: {
+            bar: GanttBarObject;
+            e: MouseEvent;
+            datetime?: string | Date | undefined;
+        }) => any) | undefined;
         "onDblclick-bar"?: ((value: {
             bar: GanttBarObject;
             e: MouseEvent;
@@ -357,17 +346,8 @@ declare const _default: {
         "onDragend-bar"?: ((value: {
             bar: GanttBarObject;
             e: MouseEvent;
-            movedBars?: Map<GanttBarObject, {
-                oldStart: string;
-                oldEnd: string;
-            }> | undefined;
         }) => any) | undefined;
         "onContextmenu-bar"?: ((value: {
-            bar: GanttBarObject;
-            e: MouseEvent;
-            datetime?: string | Date | undefined;
-        }) => any) | undefined;
-        "onMouseup-bar"?: ((value: {
             bar: GanttBarObject;
             e: MouseEvent;
             datetime?: string | Date | undefined;
@@ -399,6 +379,11 @@ declare const _default: {
         e: MouseEvent;
         datetime?: string | Date | undefined;
     }) => any) | undefined;
+    "onMouseup-bar"?: ((value: {
+        bar: GanttBarObject;
+        e: MouseEvent;
+        datetime?: string | Date | undefined;
+    }) => any) | undefined;
     "onDblclick-bar"?: ((value: {
         bar: GanttBarObject;
         e: MouseEvent;
@@ -423,17 +408,8 @@ declare const _default: {
     "onDragend-bar"?: ((value: {
         bar: GanttBarObject;
         e: MouseEvent;
-        movedBars?: Map<GanttBarObject, {
-            oldStart: string;
-            oldEnd: string;
-        }> | undefined;
     }) => any) | undefined;
     "onContextmenu-bar"?: ((value: {
-        bar: GanttBarObject;
-        e: MouseEvent;
-        datetime?: string | Date | undefined;
-    }) => any) | undefined;
-    "onMouseup-bar"?: ((value: {
         bar: GanttBarObject;
         e: MouseEvent;
         datetime?: string | Date | undefined;
@@ -486,10 +462,6 @@ declare const _default: {
     "dragend-bar": (value: {
         bar: GanttBarObject;
         e: MouseEvent;
-        movedBars?: Map<GanttBarObject, {
-            oldStart: string;
-            oldEnd: string;
-        }> | undefined;
     }) => void;
 } & {
     "contextmenu-bar": (value: {
@@ -498,19 +470,20 @@ declare const _default: {
         datetime?: string | Date | undefined;
     }) => void;
 }, string, {
-    precision: "month" | "hour" | "day";
-    rowHeight: number;
-    grid: boolean;
-    width: string;
+    precision: "hour" | "day" | "month";
     dateFormat: string | false;
-    pushOnOverlap: boolean;
-    colorScheme: string | ColorScheme;
-    font: string;
+    width: string;
     hideTimeaxis: boolean;
+    colorScheme: string | ColorScheme;
+    grid: boolean;
+    pushOnOverlap: boolean;
     noOverlap: boolean;
+    rowHeight: number;
     highlightedUnits: number[];
+    font: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
+        rows: (_: {}) => any;
         'upper-timeunit': (_: {
             label: string;
             value: string | undefined;
