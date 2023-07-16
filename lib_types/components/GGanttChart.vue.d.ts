@@ -498,6 +498,8 @@ declare const _default: {
         'bar-tooltip': (_: {
             bar: {
                 [x: string]: any;
+                beginDate: string;
+                endDate: string;
                 ganttBarConfig: {
                     id: string;
                     label?: string | undefined;
@@ -2031,8 +2033,6 @@ declare const _default: {
                         "text-anchor"?: import("csstype").TextAnchorProperty | undefined;
                         "vector-effect"?: import("csstype").VectorEffectProperty | undefined;
                     } | undefined;
-                    beginDate: string;
-                    endDate: string;
                 };
             } | undefined;
         }) => any;

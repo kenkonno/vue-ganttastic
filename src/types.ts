@@ -3,6 +3,8 @@ import type { CSSProperties } from "vue"
 export type GanttBarObject = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
+  beginDate: string,
+  endDate: string,
   ganttBarConfig: {
     id: string
     label?: string
@@ -13,8 +15,6 @@ export type GanttBarObject = {
     dragLimitLeft?: number
     dragLimitRight?: number
     style?: CSSProperties,
-    beginDate: string,
-    endDate: string,
   }
 }
 
