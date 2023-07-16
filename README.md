@@ -5,6 +5,12 @@
 npm update @infectoone/vue-ganttastic
 
 
+# 色々( ..)φメモメモ
+ - 横幅問題は好みの大きさになる width を渡してあげればいい。
+ - 上側でoverflow: scroll; してあげれば色々解決。
+ - 左側の項目欄を追加してあげれば自前でカスタムできる便利かつシンプルなチャートライブラリをゲット下のも同然
+
+
 
 # Vue Ganttastic
 <div style="display: flex; flex-direction: column; align-items:center;">

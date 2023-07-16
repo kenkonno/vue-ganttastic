@@ -8,7 +8,7 @@
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
   >
-    <div class="g-gantt-row-label" :style="{ background: colors.primary, color: colors.text }">
+    <div class="g-gantt-row-label" :style="{ background: colors.primary, color: colors.text }" v-if="false">
       <slot name="label">
         {{ label }}
       </slot>
@@ -33,7 +33,6 @@ import GGanttBar from "./GGanttBar.vue"
 import { BAR_CONTAINER_KEY } from "../provider/symbols"
 
 const props = defineProps<{
-  label: string
   bars: GanttBarObject[]
   highlightOnHover?: boolean
 }>()

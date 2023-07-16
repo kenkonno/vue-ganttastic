@@ -6,18 +6,8 @@
         <div class="g-timeaxis" style="width:auto;">
           table headers
         </div>
-        <div class="g-gantt-row" style="height: 40px; display:flex;">
-          <div> INPUT 1 </div>
-          <div> INPUT 2 </div>
-          <div> INPUT 1 </div>
-          <div> INPUT 2 </div>
-        </div>
-        <div class="g-gantt-row" style="height: 40px; display:flex;">
-          <div> INPUT 1 </div>
-          <div> INPUT 2 </div>
-          <div> INPUT 1 </div>
-          <div> INPUT 2 </div>
-        </div>
+        <slot name="rows">
+        </slot>
       </div>
 
       <div
