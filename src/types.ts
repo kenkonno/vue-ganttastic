@@ -13,7 +13,8 @@ export type GanttBarObject = {
     dragLimitLeft?: number
     dragLimitRight?: number
     style?: CSSProperties,
-    saaaaaaa?: CSSProperties,
+    beginDate: string,
+    endDate: string,
   }
 }
 

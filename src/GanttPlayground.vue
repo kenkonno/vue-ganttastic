@@ -19,17 +19,6 @@
     @dragend-bar="onDragendBar($event.bar, $event.e)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
   >
-    <g-gantt-row v-for="bar in bars" :key="bar.ganttBarConfig.id" :bars="[bar]"/>
-    <!-- こっから下は上側で入れられる予定 -->
-    <template #rows>
-      <div class="g-gantt-row" style="height: 40px; display:flex;" v-for="row in rows"
-           :key="row.bar.ganttBarConfig.id">
-        <div>{{ row.taskName }}</div>
-        <div><input type="number" v-model="row.numberOfWorkers"/></div>
-        <div><input type="date" :value="row.workStartDate.format('YYYY-MM-DD')"/></div>
-        <div><input type="date" v-model="row.workEndDate"/></div>
-      </div>
-    </template>
   </g-gantt-chart>
 </template>
 
@@ -37,50 +26,10 @@
 import {ref} from "vue"
 import type {GanttBarObject} from "./types.js"
 import GGanttChart from "./components/GGanttChart.vue";
-import dayjs, {Dayjs} from "dayjs";
 
 const chartStart = ref("01.05.2023 00:00")
 const chartEnd = ref("31.07.2023 00:00")
 const format = ref("DD.MM.YYYY HH:mm")
-
-type TaskName = string;
-type NumberOfWorkers = Number;
-type WorkStartDate = Dayjs;
-type WorkEndDate = Dayjs;
-type RowID = string;
-
-type Row = {
-  bar: GanttBarObject
-  taskName: TaskName
-  numberOfWorkers: NumberOfWorkers
-  workStartDate: WorkStartDate
-  workEndDate: WorkEndDate
-}
-
-const newRow = (id: RowID, taskName: TaskName, numberOfWorkers: NumberOfWorkers, workStartDate: WorkStartDate, workEndDate: WorkEndDate) => {
-  const result: Row = {
-    bar: {
-      beginDate: workStartDate.format(format.value),
-      endDate: workEndDate.format(format.value),
-      ganttBarConfig: {
-        hasHandles: true,
-        id: id,
-        label: taskName,
-      }
-    },
-    taskName: taskName,
-    numberOfWorkers: numberOfWorkers,
-    workStartDate: workStartDate,
-    workEndDate: workEndDate,
-  }
-  console.log("RESULT#########", result, workStartDate.toString())
-  return result
-}
-const rows = ref<Row[]>([
-  newRow("id-1", "作業1", 1, dayjs('2023-05-02'), dayjs('2023-05-03')),
-  newRow("id-2", "作業2", 1, dayjs('2023-05-06'), dayjs('2023-05-12'))
-])
-const bars = rows.value.map(v => v.bar)
 
 const onClickBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("click-bar", bar, e, datetime)
