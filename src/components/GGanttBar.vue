@@ -110,6 +110,10 @@ onMounted(() => {
     () => {
       xStart.value = mapTimeToPosition(bar.value[barStart.value])
       xEnd.value = mapTimeToPosition(bar.value[barEnd.value])
+
+      // xStart.value = mapTimeToPosition(bar.value[barStart.value].substring(0, 11) + "00:00")
+      // xEnd.value = mapTimeToPosition(bar.value[barEnd.value].substring(0, 11) + "23:59")
+
     },
     { deep: true, immediate: true }
   )

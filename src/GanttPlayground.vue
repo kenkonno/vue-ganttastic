@@ -19,7 +19,10 @@
     @dragend-bar="onDragendBar($event.bar, $event.e)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
   >
+    <g-gantt-row :bars="bars1"/>
+    <g-gantt-row :bars="bars2"/>
   </g-gantt-chart>
+  {{bars2}}
 </template>
 
 <script setup lang="ts">
@@ -30,6 +33,35 @@ import GGanttChart from "./components/GGanttChart.vue";
 const chartStart = ref("01.05.2023 00:00")
 const chartEnd = ref("31.07.2023 00:00")
 const format = ref("DD.MM.YYYY HH:mm")
+const bars1 = ref<GanttBarObject[]>([
+  {
+    beginDate: "02.05.2023 00:00",
+    endDate: "03.05.2023 23:59",
+    ganttBarConfig: {
+      hasHandles: true,
+      id: "8621987329",
+      label: "AAAAAAAAA",
+      // bundle: "bundle2"
+    }
+  }
+])
+
+const bars2 = ref([
+  {
+    beginDate: "06.05.2023 00:00",
+    endDate: "12.05.2023 23:59",
+    ganttBarConfig: {
+      hasHandles: true,
+      id: "1592311887",
+      label: "BBBBBBBBBBBB",
+      // bundle: "bundle2",
+      style: {
+        background: "magenta"
+      }
+    }
+  },
+])
+
 
 const onClickBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("click-bar", bar, e, datetime)
@@ -65,8 +97,8 @@ const onDragendBar = (
 ) => {
   console.log("dragend-bar", bar, e)
   // １日の始まりに合わせる操作
-  bar.beginDate = bar.beginDate.substring(0, 11) + "00:00"
-  bar.endDate = bar.endDate.substring(0, 11) + "00:00"
+  // bar.beginDate = bar.beginDate.substring(0, 11) + "00:00"
+  // bar.endDate = bar.endDate.substring(0, 11) + "00:00"
 }
 
 const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
