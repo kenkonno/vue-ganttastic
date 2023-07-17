@@ -18,6 +18,8 @@
     @drag-bar="onDragBar($event.bar, $event.e)"
     @dragend-bar="onDragendBar($event.bar, $event.e)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
+
+    :footer-labels="['1','2','3']"
   >
     <g-gantt-row :bars="bars1"/>
     <g-gantt-row :bars="bars2"/>

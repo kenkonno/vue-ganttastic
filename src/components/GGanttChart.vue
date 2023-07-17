@@ -32,6 +32,8 @@
           <slot/>
           <!-- the g-gantt-row components go here -->
         </div>
+        <g-gantt-footer v-if="!hideTimeaxis" :labels="footerLabels">
+        </g-gantt-footer>
 
         <g-gantt-bar-tooltip :model-value="showTooltip || isDragging" :bar="tooltipBar">
           <template #default>
@@ -64,6 +66,7 @@ import {CHART_ROWS_KEY, CONFIG_KEY, EMIT_BAR_EVENT_KEY} from "../provider/symbol
 import type {GanttBarObject} from "../types"
 import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
 import {useElementSize} from "@vueuse/core"
+import GGanttFooter from "./GGanttFooter.vue";
 
 export interface GGanttChartProps {
   chartStart: string | Date
@@ -81,6 +84,8 @@ export interface GGanttChartProps {
   rowHeight?: number
   highlightedUnits?: number[]
   font?: string
+  footerLabels?: string[]
+
 }
 
 export type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {

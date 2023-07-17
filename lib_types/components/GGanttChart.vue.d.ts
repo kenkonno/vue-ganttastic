@@ -18,6 +18,7 @@ export interface GGanttChartProps {
     rowHeight?: number;
     highlightedUnits?: number[];
     font?: string;
+    footerLabels?: string[];
 }
 export declare type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
     colors: ComputedRef<ColorScheme>;
