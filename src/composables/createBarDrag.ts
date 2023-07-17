@@ -109,7 +109,7 @@ export default function createBarDrag(
       return
     }
     if (bar[barStart.value].substring(0, 10) != mapPositionToTime(xEnd).substring(0, 10)) {
-      const after = mapPositionToTime(xEnd).substring(0, 10) + " 23:59"
+      const after = mapPositionToTime(xEnd).substring(0, 10) + " 23:00"
       bar[barEnd.value] = after
     }
     onDrag(e, bar)
