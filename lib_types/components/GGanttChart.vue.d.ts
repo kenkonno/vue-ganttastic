@@ -19,6 +19,7 @@ export interface GGanttChartProps {
     highlightedUnits?: number[];
     font?: string;
     footerLabels?: string[];
+    sticky?: boolean;
 }
 export declare type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
     colors: ComputedRef<ColorScheme>;
@@ -484,6 +485,7 @@ declare const _default: {
     font: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
+        'table-header': (_: {}) => any;
         rows: (_: {}) => any;
         'upper-timeunit': (_: {
             label: string;

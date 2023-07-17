@@ -2,9 +2,11 @@
   <div style="display:flex; overflow:scroll;"> <!-- なんかこの２重構造だとflexかつスクロールにも対応するみたい -->
     <div style="display: flex;">
       <!-- ここを表頭のコンポーネントとして切り出す。何も考えず Rowオブジェクトに追加してあげればいいかな。一旦any型受け付けてるし。 -->
-      <div style=" display:flex; flex-flow: column;">
+      <!-- TODO: 背景色が固定 -->
+      <div style=" display:flex; flex-flow: column;" :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''">
         <div class="g-timeaxis" style="width:auto;">
-          table headers
+          <slot name="table-header">
+          </slot>
         </div>
         <slot name="rows">
         </slot>
@@ -85,6 +87,7 @@ export interface GGanttChartProps {
   highlightedUnits?: number[]
   font?: string
   footerLabels?: string[]
+  sticky?: boolean
 
 }
 
