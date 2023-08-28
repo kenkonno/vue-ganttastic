@@ -485,8 +485,7 @@ declare const _default: {
     font: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
-        'table-header': (_: {}) => any;
-        rows: (_: {}) => any;
+        'side-menu': (_: {}) => any;
         'upper-timeunit': (_: {
             label: string;
             value: string | undefined;
