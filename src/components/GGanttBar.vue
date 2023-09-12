@@ -34,7 +34,6 @@
                 backgroundColor: barConfig.progressColor
               }"
         >
-          {{ barConfig.progress }}
         </div>
       </slot>
     </div>
