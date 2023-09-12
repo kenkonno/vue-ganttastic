@@ -19,6 +19,7 @@
     @dragend-bar="onDragendBar($event.bar, $event.e)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
     sticky
+    :highlighted-dates="holidays"
 
     :footer-labels="['1','2','3']"
   >
@@ -35,6 +36,8 @@
 import {ref} from "vue"
 import type {GanttBarObject} from "./types.js"
 import GGanttChart from "./components/GGanttChart.vue";
+
+const holidays = [new Date('2023-05-20 00:00:00')]
 
 const chartStart = ref("01.05.2023 00:00")
 const chartEnd = ref("31.07.2023 00:00")

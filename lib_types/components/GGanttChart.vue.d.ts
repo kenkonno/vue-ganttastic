@@ -16,7 +16,7 @@ export interface GGanttChartProps {
     pushOnOverlap?: boolean;
     noOverlap?: boolean;
     rowHeight?: number;
-    highlightedUnits?: number[];
+    highlightedDates?: Date[];
     font?: string;
     footerLabels?: string[];
     sticky?: boolean;
@@ -42,7 +42,7 @@ declare const _default: {
             pushOnOverlap: boolean;
             noOverlap: boolean;
             rowHeight: number;
-            highlightedUnits: number[];
+            highlightedDates: Date[];
             font: string;
         }> & Omit<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<GGanttChartProps>, {
             dateFormat: string;
@@ -54,7 +54,7 @@ declare const _default: {
             pushOnOverlap: boolean;
             noOverlap: boolean;
             rowHeight: number;
-            highlightedUnits: () => never[];
+            highlightedDates: () => never[];
             font: string;
         }>>> & {
             "onClick-bar"?: ((value: {
@@ -102,7 +102,7 @@ declare const _default: {
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
-        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "dateFormat" | "width" | "hideTimeaxis" | "colorScheme" | "grid" | "pushOnOverlap" | "noOverlap" | "rowHeight" | "highlightedUnits" | "font">;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "dateFormat" | "width" | "hideTimeaxis" | "colorScheme" | "grid" | "pushOnOverlap" | "noOverlap" | "rowHeight" | "highlightedDates" | "font">;
         $attrs: {
             [x: string]: unknown;
         };
@@ -161,7 +161,7 @@ declare const _default: {
             pushOnOverlap: boolean;
             noOverlap: boolean;
             rowHeight: number;
-            highlightedUnits: () => never[];
+            highlightedDates: () => never[];
             font: string;
         }>>> & {
             "onClick-bar"?: ((value: {
@@ -274,7 +274,7 @@ declare const _default: {
             pushOnOverlap: boolean;
             noOverlap: boolean;
             rowHeight: number;
-            highlightedUnits: number[];
+            highlightedDates: Date[];
             font: string;
         }> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
@@ -306,7 +306,7 @@ declare const _default: {
         pushOnOverlap: boolean;
         noOverlap: boolean;
         rowHeight: number;
-        highlightedUnits: () => never[];
+        highlightedDates: () => never[];
         font: string;
     }>>> & {
         "onClick-bar"?: ((value: {
@@ -368,7 +368,7 @@ declare const _default: {
     pushOnOverlap: boolean;
     noOverlap: boolean;
     rowHeight: number;
-    highlightedUnits: () => never[];
+    highlightedDates: () => never[];
     font: string;
 }>>> & {
     "onClick-bar"?: ((value: {
@@ -481,7 +481,7 @@ declare const _default: {
     pushOnOverlap: boolean;
     noOverlap: boolean;
     rowHeight: number;
-    highlightedUnits: number[];
+    highlightedDates: Date[];
     font: string;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {

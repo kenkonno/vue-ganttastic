@@ -1,12 +1,12 @@
 <template>
   <div class="g-grid-container">
     <div
-      v-for="{ label, value, width } in timeaxisUnits.lowerUnits"
+      v-for="{ label, value, width, date } in timeaxisUnits.lowerUnits"
       :key="label"
       class="g-grid-line"
       :style="{
         width,
-        background: highlightedUnits?.includes(Number(value)) ? colors.hoverHighlight : undefined
+        background: highlightedTimes?.includes(date.getTime()) ? colors.hoverHighlight : undefined
       }"
     />
   </div>
@@ -16,10 +16,11 @@
 import provideConfig from "../provider/provideConfig.js"
 import useTimeaxisUnits from "../composables/useTimeaxisUnits.js"
 
-defineProps<{
-  highlightedUnits?: number[]
+const props = defineProps<{
+  highlightedDates?: Date[]
 }>()
 
+const highlightedTimes = props.highlightedDates?.map ( v => v.getTime() )
 const { colors } = provideConfig()
 const { timeaxisUnits } = useTimeaxisUnits()
 </script>

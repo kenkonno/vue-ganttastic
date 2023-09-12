@@ -24,7 +24,7 @@
           </template>
         </g-gantt-timeaxis>
 
-        <g-gantt-grid v-if="grid" :highlighted-units="highlightedUnits"/>
+        <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
 
         <div class="g-gantt-rows-container">
           <slot/>
@@ -80,7 +80,7 @@ export interface GGanttChartProps {
   pushOnOverlap?: boolean
   noOverlap?: boolean
   rowHeight?: number
-  highlightedUnits?: number[]
+  highlightedDates?: Date[]
   font?: string
   footerLabels?: string[]
   sticky?: boolean
@@ -105,7 +105,7 @@ const props = withDefaults(defineProps<GGanttChartProps>(), {
   pushOnOverlap: false,
   noOverlap: false,
   rowHeight: 40,
-  highlightedUnits: () => [],
+  highlightedDates: () => [],
   font: "inherit"
 })
 
