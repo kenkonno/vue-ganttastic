@@ -2035,6 +2035,8 @@ declare const _default: {
                         "text-anchor"?: import("csstype").TextAnchorProperty | undefined;
                         "vector-effect"?: import("csstype").VectorEffectProperty | undefined;
                     } | undefined;
+                    progress?: number | undefined;
+                    progressColor?: string | undefined;
                 };
             } | undefined;
         }) => any;

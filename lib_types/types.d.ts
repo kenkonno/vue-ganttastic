@@ -9,13 +9,12 @@ export declare type GanttBarConfig = {
     dragLimitLeft?: number;
     dragLimitRight?: number;
     style?: CSSProperties;
+    progress?: number;
+    progressColor?: string;
 };
 export declare type GanttBarObject = {
     [key: string]: any;
     beginDate: string;
     endDate: string;
     ganttBarConfig: GanttBarConfig;
-};
-export declare type Test = {
-    d: string;
 };

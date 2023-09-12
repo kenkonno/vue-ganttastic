@@ -20,40 +20,53 @@
   >
     <div class="g-gantt-bar-label">
       <slot :bar="bar">
-        <div>
+        <div style="z-index:100">
           {{ barConfig.label || "" }}
+        </div>
+        <div v-if="barConfig.progress"
+             style="
+              position:absolute;
+              height:100%;
+              left: 0;
+              "
+             :style="{
+                width:barConfig.progress + '%',
+                backgroundColor: barConfig.progressColor
+              }"
+        >
+          {{ barConfig.progress }}
         </div>
       </slot>
     </div>
     <template v-if="barConfig.hasHandles">
-      <div class="g-gantt-bar-handle-left" />
-      <div class="g-gantt-bar-handle-right" />
+      <div class="g-gantt-bar-handle-left"/>
+      <div class="g-gantt-bar-handle-right"/>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRefs, watch, onMounted, inject } from "vue"
+import {computed, ref, toRefs, watch, onMounted, inject} from "vue"
 
 import useBarDragManagement from "../composables/useBarDragManagement.js"
 import useTimePositionMapping from "../composables/useTimePositionMapping.js"
 import useBarDragLimit from "../composables/useBarDragLimit.js"
-import type { GanttBarObject } from "../types"
+import type {GanttBarObject} from "../types"
 import provideEmitBarEvent from "../provider/provideEmitBarEvent.js"
 import provideConfig from "../provider/provideConfig.js"
-import { BAR_CONTAINER_KEY } from "../provider/symbols"
+import {BAR_CONTAINER_KEY} from "../provider/symbols"
 
 const props = defineProps<{
   bar: GanttBarObject
 }>()
 const emitBarEvent = provideEmitBarEvent()
 const config = provideConfig()
-const { rowHeight } = config
+const {rowHeight} = config
 
-const { bar } = toRefs(props)
-const { mapTimeToPosition, mapPositionToTime } = useTimePositionMapping()
-const { initDragOfBar, initDragOfBundle } = useBarDragManagement()
-const { setDragLimitsOfGanttBar } = useBarDragLimit()
+const {bar} = toRefs(props)
+const {mapTimeToPosition, mapPositionToTime} = useTimePositionMapping()
+const {initDragOfBar, initDragOfBundle} = useBarDragManagement()
+const {setDragLimitsOfGanttBar} = useBarDragLimit()
 
 const isDragging = ref(false)
 
@@ -80,7 +93,7 @@ const prepareForDrag = () => {
       window.removeEventListener("mousemove", firstMousemoveCallback)
       isDragging.value = false
     },
-    { once: true }
+    {once: true}
   )
 }
 
@@ -99,7 +112,7 @@ const onMouseEvent = (e: MouseEvent) => {
   emitBarEvent(e, bar.value, datetime)
 }
 
-const { barStart, barEnd, width, chartStart, chartEnd, chartSize } = config
+const {barStart, barEnd, width, chartStart, chartEnd, chartSize} = config
 
 const xStart = ref(0)
 const xEnd = ref(0)
@@ -115,7 +128,7 @@ onMounted(() => {
       // xEnd.value = mapTimeToPosition(bar.value[barEnd.value].substring(0, 11) + "23:59")
 
     },
-    { deep: true, immediate: true }
+    {deep: true, immediate: true}
   )
 })
 </script>
@@ -138,11 +151,13 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
 }
+
 .g-gantt-bar-label > * {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .g-gantt-bar-handle-left,
 .g-gantt-bar-handle-right {
   position: absolute;
@@ -154,9 +169,11 @@ onMounted(() => {
   cursor: ew-resize;
   top: 0;
 }
+
 .g-gantt-bar-handle-left {
   left: 0;
 }
+
 .g-gantt-bar-handle-right {
   right: 0;
 }

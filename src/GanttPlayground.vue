@@ -47,7 +47,8 @@ const bars1 = ref<GanttBarObject[]>([
       hasHandles: true,
       id: "8621987329",
       label: "AAAAAAAAA",
-      // bundle: "bundle2"
+      progress: 50,
+      progressColor: "#EFEFEF"
     }
   }
 ])
@@ -63,7 +64,9 @@ const bars2 = ref([
       // bundle: "bundle2",
       style: {
         background: "magenta"
-      }
+      },
+      progress: 30,
+      progressColor: "#EFEFEF"
     }
   },
 ])
