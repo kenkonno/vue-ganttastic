@@ -1,47 +1,178 @@
 <template>
-  <g-gantt-chart
-    :chart-start="chartStart"
-    :chart-end="chartEnd"
-    precision="day"
-    :row-height="40"
-    grid
-    width="1200px"
-    bar-start="beginDate"
-    bar-end="endDate"
-    :date-format="format"
-    @click-bar="onClickBar($event.bar, $event.e, $event.datetime)"
-    @mousedown-bar="onMousedownBar($event.bar, $event.e, $event.datetime)"
-    @dblclick-bar="onMouseupBar($event.bar, $event.e, $event.datetime)"
-    @mouseenter-bar="onMouseenterBar($event.bar, $event.e)"
-    @mouseleave-bar="onMouseleaveBar($event.bar, $event.e)"
-    @dragstart-bar="onDragstartBar($event.bar, $event.e)"
-    @drag-bar="onDragBar($event.bar, $event.e)"
-    @dragend-bar="onDragendBar($event.bar, $event.e)"
-    @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
-    sticky
-    :highlighted-dates="holidays"
-
-    :footer-labels="['1','2','3']"
-  >
-    <g-gantt-row :bars="bars1"/>
-    <g-gantt-row :bars="bars2"/>
-    <template #table-header>
-      table header
-    </template>
-  </g-gantt-chart>
-  {{bars2}}
+  <div style="overflow:scroll;"> <!-- なんかこの２重構造だとflexかつスクロールにも対応するみたい -->
+    <g-gantt-chart
+      :chart-start="chartStart"
+      :chart-end="chartEnd"
+      precision="day"
+      :row-height="40"
+      grid
+      width="1200px"
+      bar-start="beginDate"
+      bar-end="endDate"
+      :date-format="format"
+      @click-bar="onClickBar($event.bar, $event.e, $event.datetime)"
+      @mousedown-bar="onMousedownBar($event.bar, $event.e, $event.datetime)"
+      @dblclick-bar="onMouseupBar($event.bar, $event.e, $event.datetime)"
+      @mouseenter-bar="onMouseenterBar($event.bar, $event.e)"
+      @mouseleave-bar="onMouseleaveBar($event.bar, $event.e)"
+      @dragstart-bar="onDragstartBar($event.bar, $event.e)"
+      @drag-bar="onDragBar($event.bar, $event.e)"
+      @dragend-bar="onDragendBar($event.bar, $event.e)"
+      @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
+      sticky
+      :highlighted-dates="holidays"
+    >
+      <g-gantt-row :bars="item" v-for="(item, index) in bars" :key="index"/>
+      <template #side-menu>
+        <div ref="sideMenuElement">
+          <table>
+            <tr style="height: 75px;">
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+            <tr>
+              <td>AAAAA</td>
+              <td>BBBBB</td>
+            </tr>
+          </table>
+        </div>
+      </template>
+    </g-gantt-chart>
+      <hr>
+    <div class="hide-scroll-bar" style="height: 30vh;">
+      <g-gantt-chart
+        :chart-start="chartStart"
+        :chart-end="chartEnd"
+        precision="day"
+        :row-height="40"
+        grid
+        width="1200px"
+        bar-start="beginDate"
+        bar-end="endDate"
+        :date-format="format"
+        sticky
+        :highlighted-dates="holidays"
+        :hide-timeaxis="true"
+      >
+        <g-gantt-label-row :labels="['1','2','3']"/>
+        <g-gantt-label-row :labels="['4','5','6']"/>
+        <g-gantt-label-row :labels="['4','5','6']"/>
+        <g-gantt-label-row :labels="['4','5','6']"/>
+        <g-gantt-label-row :labels="['4','5','6']"/>
+        <g-gantt-label-row :labels="['4','5','6']"/>
+        <template #side-menu>
+          <div :style="syncWidth()" class="hide-scroll-bar">
+            <table>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+              <tr>
+                <td>AAAAA</td>
+                <td>BBBBB</td>
+              </tr>
+            </table>
+          </div>
+        </template>
+      </g-gantt-chart>
+    </div>
+  </div>
 </template>
+<style>
+html, body, #app, #app > div {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+table tr {
+  height: 40px;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+table tr td {
+  border: solid 1px #eaeaea;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+</style>
+
 
 <script setup lang="ts">
 import {ref} from "vue"
 import type {GanttBarObject} from "./types.js"
 import GGanttChart from "./components/GGanttChart.vue";
+import GGanttLabelRow from "./components/GGanttLabelRow.vue"
 
 const holidays = [new Date('2023-05-20 00:00:00')]
 
 const chartStart = ref("01.05.2023 00:00")
 const chartEnd = ref("31.07.2023 00:00")
 const format = ref("DD.MM.YYYY HH:mm")
+
+const sideMenuElement = ref<HTMLDivElement>()
+const syncWidth = () => {
+  console.log("##### SYNC WIDTH")
+  console.log(sideMenuElement.value?.clientWidth)
+  const parentWidth = sideMenuElement.value?.clientWidth
+  return {width: parentWidth + "px", overflow: 'scroll'}
+}
+
+
 const bars1 = ref<GanttBarObject[]>([
   {
     beginDate: "02.05.2023 00:00",
@@ -74,6 +205,16 @@ const bars2 = ref([
   },
 ])
 
+const bars = ref<GanttBarObject[][]>(
+  [
+    bars1.value,
+    bars2.value,
+    bars1.value,
+    bars2.value,
+    bars1.value,
+    bars2.value
+  ]
+)
 
 const onClickBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("click-bar", bar, e, datetime)
