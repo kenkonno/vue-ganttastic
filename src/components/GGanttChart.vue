@@ -1,42 +1,40 @@
 <template>
-  <div style="display: flex;">
-    <div style=" display:flex; flex-flow: column;"
-         :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''">
-      <slot name="side-menu">
-      </slot>
+  <div style=" display:flex; flex-flow: column;"
+       :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''">
+    <slot name="side-menu">
+    </slot>
+  </div>
+
+  <div
+    ref="ganttChart"
+    class="g-gantt-chart"
+    :style="{ width, background: colors.background, fontFamily: font }"
+  >
+    <g-gantt-timeaxis v-if="!hideTimeaxis">
+      <template #upper-timeunit="{ label, value, date }">
+        <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
+        <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
+      </template>
+      <template #timeunit="{ label, value, date }">
+        <!-- expose timeunit slot of g-gantt-timeaxis-->
+        <slot name="timeunit" :label="label" :value="value" :date="date"/>
+      </template>
+    </g-gantt-timeaxis>
+
+    <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
+
+    <div class="g-gantt-rows-container">
+      <slot/>
+      <!-- the g-gantt-row components go here -->
     </div>
+    <g-gantt-footer v-if="!hideTimeaxis" :labels="footerLabels">
+    </g-gantt-footer>
 
-    <div
-      ref="ganttChart"
-      class="g-gantt-chart"
-      :style="{ width, background: colors.background, fontFamily: font }"
-    >
-      <g-gantt-timeaxis v-if="!hideTimeaxis">
-        <template #upper-timeunit="{ label, value, date }">
-          <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
-          <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
-        </template>
-        <template #timeunit="{ label, value, date }">
-          <!-- expose timeunit slot of g-gantt-timeaxis-->
-          <slot name="timeunit" :label="label" :value="value" :date="date"/>
-        </template>
-      </g-gantt-timeaxis>
-
-      <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
-
-      <div class="g-gantt-rows-container">
-        <slot/>
-        <!-- the g-gantt-row components go here -->
-      </div>
-      <g-gantt-footer v-if="!hideTimeaxis" :labels="footerLabels">
-      </g-gantt-footer>
-
-      <g-gantt-bar-tooltip :model-value="showTooltip || isDragging" :bar="tooltipBar">
-        <template #default>
-          <slot name="bar-tooltip" :bar="tooltipBar"/>
-        </template>
-      </g-gantt-bar-tooltip>
-    </div>
+    <g-gantt-bar-tooltip :model-value="showTooltip || isDragging" :bar="tooltipBar">
+      <template #default>
+        <slot name="bar-tooltip" :bar="tooltipBar"/>
+      </template>
+    </g-gantt-bar-tooltip>
   </div>
   <div>
     <slot name="footer"/>
