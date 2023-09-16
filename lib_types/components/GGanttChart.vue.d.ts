@@ -2040,6 +2040,7 @@ declare const _default: {
                 };
             } | undefined;
         }) => any;
+        footer: (_: {}) => any;
     };
 });
 export default _default;
