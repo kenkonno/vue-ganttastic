@@ -58,7 +58,6 @@
         </div>
       </template>
     </g-gantt-chart>
-      <hr>
     <div class="hide-scroll-bar" style="height: 30vh;">
       <g-gantt-chart
         :chart-start="chartStart"
