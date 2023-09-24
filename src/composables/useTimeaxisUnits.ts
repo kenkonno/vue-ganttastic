@@ -14,6 +14,8 @@ export default function useTimeaxisUnits() {
         return "day"
       case "day":
         return "month"
+      case "week":
+        return "month"
       case "month":
         return "year"
       default:
@@ -27,6 +29,7 @@ export default function useTimeaxisUnits() {
     hour: "HH",
     date: "DD.MMM ",
     day: "DD",
+    week: "DD",
     month: "MMMM YYYY",
     year: "YYYY"
   }
@@ -91,9 +94,17 @@ export default function useTimeaxisUnits() {
             totalMinutes) *
           100
       }
+      let value: any
+      switch(lowerUnit) {
+        case "week":
+          value = currentUnit.startOf("week")
+          break;
+        default:
+          value = currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()
+      }
       lowerUnits.push({
         label: currentUnit.format(displayFormats[lowerUnit]),
-        value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
+        value: String(value),
         date: currentUnit.toDate(),
         width: String(width) + "%"
       })

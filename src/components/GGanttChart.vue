@@ -67,7 +67,7 @@ import GGanttFooter from "./GGanttFooter.vue";
 export interface GGanttChartProps {
   chartStart: string | Date
   chartEnd: string | Date
-  precision?: "hour" | "day" | "month"
+  precision?: "hour" | "day" | "week" | "month"
   barStart: string
   barEnd: string
   dateFormat?: string | false

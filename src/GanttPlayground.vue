@@ -1,9 +1,9 @@
 <template>
-  <div style="overflow:scroll;"> <!-- なんかこの２重構造だとflexかつスクロールにも対応するみたい -->
+  <div style="overflow:scroll; display:flex;"> <!-- なんかこの２重構造だとflexかつスクロールにも対応するみたい -->
     <g-gantt-chart
       :chart-start="chartStart"
       :chart-end="chartEnd"
-      precision="day"
+      precision="week"
       :row-height="40"
       grid
       width="1200px"
@@ -58,59 +58,6 @@
         </div>
       </template>
     </g-gantt-chart>
-    <div class="hide-scroll-bar" style="height: 30vh;">
-      <g-gantt-chart
-        :chart-start="chartStart"
-        :chart-end="chartEnd"
-        precision="day"
-        :row-height="40"
-        grid
-        width="1200px"
-        bar-start="beginDate"
-        bar-end="endDate"
-        :date-format="format"
-        sticky
-        :highlighted-dates="holidays"
-        :hide-timeaxis="true"
-      >
-        <g-gantt-label-row :labels="['1','2','3']"/>
-        <g-gantt-label-row :labels="['4','5','6']"/>
-        <g-gantt-label-row :labels="['4','5','6']"/>
-        <g-gantt-label-row :labels="['4','5','6']"/>
-        <g-gantt-label-row :labels="['4','5','6']"/>
-        <g-gantt-label-row :labels="['4','5','6']"/>
-        <template #side-menu>
-          <div :style="syncWidth()" class="hide-scroll-bar">
-            <table>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-              <tr>
-                <td>AAAAA</td>
-                <td>BBBBB</td>
-              </tr>
-            </table>
-          </div>
-        </template>
-      </g-gantt-chart>
-    </div>
   </div>
 </template>
 <style>

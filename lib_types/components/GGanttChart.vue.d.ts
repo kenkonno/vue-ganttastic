@@ -5,7 +5,7 @@ import type { GanttBarObject } from "../types";
 export interface GGanttChartProps {
     chartStart: string | Date;
     chartEnd: string | Date;
-    precision?: "hour" | "day" | "month";
+    precision?: "hour" | "day" | "week" | "month";
     barStart: string;
     barEnd: string;
     dateFormat?: string | false;
@@ -33,7 +33,7 @@ declare const _default: {
         $: import("vue").ComponentInternalInstance;
         $data: {};
         $props: Partial<{
-            precision: "hour" | "day" | "month";
+            precision: "hour" | "day" | "week" | "month";
             dateFormat: string | false;
             width: string;
             hideTimeaxis: boolean;
@@ -265,7 +265,7 @@ declare const _default: {
                 datetime?: string | Date | undefined;
             }) => void;
         }, string, {
-            precision: "hour" | "day" | "month";
+            precision: "hour" | "day" | "week" | "month";
             dateFormat: string | false;
             width: string;
             hideTimeaxis: boolean;
@@ -472,7 +472,7 @@ declare const _default: {
         datetime?: string | Date | undefined;
     }) => void;
 }, string, {
-    precision: "hour" | "day" | "month";
+    precision: "hour" | "day" | "week" | "month";
     dateFormat: string | false;
     width: string;
     hideTimeaxis: boolean;

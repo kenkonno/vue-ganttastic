@@ -29,6 +29,7 @@ import provideConfig from "../provider/provideConfig.js"
 const TOOLTIP_FORMATS = {
   hour: "HH:mm",
   day: "DD. MMM HH:mm",
+  week: "DD. MMM HH:mm",
   month: "DD. MMMM YYYY"
 } as const
 
