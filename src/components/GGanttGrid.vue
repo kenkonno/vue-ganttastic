@@ -15,12 +15,15 @@
 <script setup lang="ts">
 import provideConfig from "../provider/provideConfig.js"
 import useTimeaxisUnits from "../composables/useTimeaxisUnits.js"
+import {computed} from "vue";
 
 const props = defineProps<{
   highlightedDates?: Date[]
 }>()
 
-const highlightedTimes = props.highlightedDates?.map ( v => v.getTime() )
+const highlightedTimes = computed(() => {
+  return props.highlightedDates?.map ( v => v.getTime() )
+})
 const { colors } = provideConfig()
 const { timeaxisUnits } = useTimeaxisUnits()
 </script>
