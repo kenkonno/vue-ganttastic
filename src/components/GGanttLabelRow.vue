@@ -14,7 +14,7 @@
           width
         }"
       >
-        <span :style="innerStyleFunc(label)">
+        <span :style="innerStyleFunc(labels[index])">
           {{ labels[index] }}
         </span>
       </div>
