@@ -14,7 +14,7 @@
           width
         }"
       >
-        <span :style="styles[index]">
+        <span :style="styles != null ? styles[index] : undefined">
           {{ labels[index] }}
         </span>
       </div>
@@ -26,10 +26,11 @@
 
 import provideConfig from "../provider/provideConfig.js"
 import useTimeaxisUnits from "../composables/useTimeaxisUnits";
+import type {StyleValue} from "vue";
 
 const props = defineProps<{
   labels: string[]
-  styles: CSSStyleDeclaration[]
+  styles?: StyleValue[]
 }>()
 const {rowHeight, colors} = provideConfig()
 const {timeaxisUnits} = useTimeaxisUnits()
