@@ -14,7 +14,7 @@
           width
         }"
       >
-        <span :style="innerStyleFunc(labels[index])">
+        <span :style="styles[index]">
           {{ labels[index] }}
         </span>
       </div>
@@ -29,17 +29,10 @@ import useTimeaxisUnits from "../composables/useTimeaxisUnits";
 
 const props = defineProps<{
   labels: string[]
-  styleFunc?: (value: string) => {}
+  styles: CSSStyleDeclaration[]
 }>()
 const {rowHeight, colors} = provideConfig()
 const {timeaxisUnits} = useTimeaxisUnits()
-
-const innerStyleFunc = (label: string) => {
-  if (props.styleFunc != null) {
-    return props.styleFunc(label)
-  }
-  return {}
-}
 
 </script>
 
