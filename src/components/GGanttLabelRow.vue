@@ -5,8 +5,8 @@
   >
     <div ref="barContainer" class="g-gantt-row-bars-container" v-bind="$attrs">
       <div
-        v-for="({ label, width }, index) in timeaxisUnits.lowerUnits"
-        :key="label"
+        v-for="({ label, width, date }, index) in timeaxisUnits.lowerUnits"
+        :key="date.getTime()"
         class="g-timeunit"
         :style="{
           color: colors.text,
