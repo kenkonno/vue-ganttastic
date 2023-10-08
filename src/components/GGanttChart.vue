@@ -1,6 +1,6 @@
 <template>
   <div style=" display:flex; flex-flow: column;"
-       :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''">
+       :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''" class="g-gantt-wrapper">
     <slot name="side-menu">
     </slot>
   </div>
