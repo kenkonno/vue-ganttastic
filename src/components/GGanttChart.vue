@@ -35,7 +35,7 @@
         <slot name="bar-tooltip" :bar="tooltipBar"/>
       </template>
     </g-gantt-bar-tooltip>
-    <g-gantt-draw-todays-line v-if="displayTodayLine"></g-gantt-draw-todays-line>
+    <g-gantt-draw-todays-line v-if="displayTodayLine" @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
   </div>
   <div>
     <slot name="footer"/>
@@ -65,6 +65,8 @@ import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
 import {useElementSize} from "@vueuse/core"
 import GGanttFooter from "./GGanttFooter.vue";
 import GGanttDrawTodaysLine from "./GGanttDrawTodayLine.vue";
+import dayjs from "dayjs";
+import useTimePositionMapping from "../composables/useTimePositionMapping";
 
 export interface GGanttChartProps {
   chartStart: string | Date
@@ -133,6 +135,7 @@ const emit = defineEmits<{
     e: "contextmenu-bar",
     value: { bar: GanttBarObject; e: MouseEvent; datetime?: string | Date }
   ): void
+  (e: "today-line-position-x", value: {xPosition: Number}): void
 }>()
 
 const {width, font, colorScheme} = toRefs(props)
@@ -243,6 +246,7 @@ provide(CONFIG_KEY, {
   chartSize
 })
 provide(EMIT_BAR_EVENT_KEY, emitBarEvent)
+
 </script>
 
 <style>

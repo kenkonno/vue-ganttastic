@@ -11,7 +11,6 @@ import type {ColorScheme} from "./color-schemes"
 import GGanttChart from "./components/GGanttChart.vue"
 import GGanttRow from "./components/GGanttRow.vue"
 import GGanttLabelRow from "./components/GGanttLabelRow.vue"
-import useTimePositionMapping from './composables/useTimePositionMapping'
 
 export function extendDayjs() {
   dayjs.extend(isSameOrBefore)
@@ -21,7 +20,7 @@ export function extendDayjs() {
 }
 
 export type {ColorScheme, GanttBarObject}
-export {GGanttChart, GGanttRow, GGanttLabelRow, useTimePositionMapping}
+export {GGanttChart, GGanttRow, GGanttLabelRow}
 
 export const ganttastic: Plugin = {
   install(app, options?) {

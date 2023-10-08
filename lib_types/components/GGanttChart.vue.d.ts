@@ -58,6 +58,9 @@ declare const _default: {
             highlightedDates: () => never[];
             font: string;
         }>>> & {
+            "onToday-line-position-x"?: ((value: {
+                xPosition: Number;
+            }) => any) | undefined;
             "onClick-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
@@ -115,7 +118,9 @@ declare const _default: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-        $emit: ((event: "click-bar", value: {
+        $emit: ((event: "today-line-position-x", value: {
+            xPosition: Number;
+        }) => void) & ((event: "click-bar", value: {
             bar: GanttBarObject;
             e: MouseEvent;
             datetime?: string | Date | undefined;
@@ -165,6 +170,9 @@ declare const _default: {
             highlightedDates: () => never[];
             font: string;
         }>>> & {
+            "onToday-line-position-x"?: ((value: {
+                xPosition: Number;
+            }) => any) | undefined;
             "onClick-bar"?: ((value: {
                 bar: GanttBarObject;
                 e: MouseEvent;
@@ -265,6 +273,10 @@ declare const _default: {
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => void;
+        } & {
+            "today-line-position-x": (value: {
+                xPosition: Number;
+            }) => void;
         }, string, {
             precision: "hour" | "day" | "week" | "month";
             dateFormat: string | false;
@@ -310,6 +322,9 @@ declare const _default: {
         highlightedDates: () => never[];
         font: string;
     }>>> & {
+        "onToday-line-position-x"?: ((value: {
+            xPosition: Number;
+        }) => any) | undefined;
         "onClick-bar"?: ((value: {
             bar: GanttBarObject;
             e: MouseEvent;
@@ -372,6 +387,9 @@ declare const _default: {
     highlightedDates: () => never[];
     font: string;
 }>>> & {
+    "onToday-line-position-x"?: ((value: {
+        xPosition: Number;
+    }) => any) | undefined;
     "onClick-bar"?: ((value: {
         bar: GanttBarObject;
         e: MouseEvent;
@@ -471,6 +489,10 @@ declare const _default: {
         bar: GanttBarObject;
         e: MouseEvent;
         datetime?: string | Date | undefined;
+    }) => void;
+} & {
+    "today-line-position-x": (value: {
+        xPosition: Number;
     }) => void;
 }, string, {
     precision: "hour" | "day" | "week" | "month";

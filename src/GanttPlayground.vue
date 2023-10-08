@@ -21,6 +21,8 @@
       @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
       sticky
       :highlighted-dates="holidays"
+      @today-line-position-x="lineTestFunc"
+      :displayTodayLine="true"
     >
       <g-gantt-row :bars="item" v-for="(item, index) in bars" :key="index"/>
       <template #side-menu>
@@ -116,6 +118,10 @@ const syncWidth = () => {
   console.log(sideMenuElement.value?.clientWidth)
   const parentWidth = sideMenuElement.value?.clientWidth
   return {width: parentWidth + "px", overflow: 'scroll'}
+}
+
+const lineTestFunc = (e: {xPosition: Number}) => {
+  console.log("###############", e.xPosition)
 }
 
 
