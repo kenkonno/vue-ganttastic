@@ -107,7 +107,7 @@ import GGanttLabelRow from "./components/GGanttLabelRow.vue"
 const holidays = [new Date('2023-05-20 00:00:00')]
 
 const chartStart = ref("01.05.2023 00:00")
-const chartEnd = ref("31.07.2023 00:00")
+const chartEnd = ref("10.11.2023 00:00")
 const format = ref("DD.MM.YYYY HH:mm")
 
 const sideMenuElement = ref<HTMLDivElement>()
