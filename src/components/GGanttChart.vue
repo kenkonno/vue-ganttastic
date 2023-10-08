@@ -35,7 +35,7 @@
         <slot name="bar-tooltip" :bar="tooltipBar"/>
       </template>
     </g-gantt-bar-tooltip>
-    <g-gantt-draw-todays-line ></g-gantt-draw-todays-line>
+    <g-gantt-draw-todays-line v-if="displayTodayLine"></g-gantt-draw-todays-line>
   </div>
   <div>
     <slot name="footer"/>
@@ -64,7 +64,7 @@ import type {GanttBarObject} from "../types"
 import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
 import {useElementSize} from "@vueuse/core"
 import GGanttFooter from "./GGanttFooter.vue";
-import GGanttDrawTodaysLine from "./GGanttDrawTodaysLine.vue";
+import GGanttDrawTodaysLine from "./GGanttDrawTodayLine.vue";
 
 export interface GGanttChartProps {
   chartStart: string | Date
@@ -84,6 +84,7 @@ export interface GGanttChartProps {
   font?: string
   footerLabels?: string[]
   sticky?: boolean
+  displayTodayLine?: boolean
 
 }
 

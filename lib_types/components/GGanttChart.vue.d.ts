@@ -20,6 +20,7 @@ export interface GGanttChartProps {
     font?: string;
     footerLabels?: string[];
     sticky?: boolean;
+    displayTodayLine?: boolean;
 }
 export declare type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
     colors: ComputedRef<ColorScheme>;
