@@ -1,7 +1,6 @@
 <template>
   <div class="today-line"
        :style="{left: xStart + 'px'}">
-    TODAY LINE
   </div>
 </template>
 
