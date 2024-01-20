@@ -29,6 +29,7 @@
           alignItems: precision === 'hour' ? '' : 'center',
           width
         }"
+        @click="emits('onClickTimeUnit',date)"
       >
         <slot name="timeunit" :label="label" :value="value" :date="date">
           {{ label }}
@@ -77,8 +78,9 @@ type GGanttTimeaxisProps = {
   mileStoneList: MileStone[]
 }
 
+const emits = defineEmits(["onClickTimeUnit"])
+
 const props = defineProps<GGanttTimeaxisProps>()
-console.log(props.mileStoneList.map(v => v.date.getTime()))
 const {precision, colors} = provideConfig()
 const {timeaxisUnits} = useTimeaxisUnits()
 

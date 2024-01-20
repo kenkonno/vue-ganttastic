@@ -10,7 +10,7 @@
     class="g-gantt-chart"
     :style="{ width, background: colors.background, fontFamily: font }"
   >
-    <g-gantt-timeaxis v-if="!hideTimeaxis" :mile-stone-list="mileStoneList">
+    <g-gantt-timeaxis v-if="!hideTimeaxis" :mile-stone-list="mileStoneList" @on-click-time-unit="$emit('onClickTimeUnit', $event)">
       <template #upper-timeunit="{ label, value, date }">
         <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
         <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
@@ -136,6 +136,7 @@ const emit = defineEmits<{
     value: { bar: GanttBarObject; e: MouseEvent; datetime?: string | Date }
   ): void
   (e: "today-line-position-x", value: {xPosition: Number}): void
+  (e: "onClickTimeUnit", value: {date: Date}): void
 }>()
 
 const {width, font, colorScheme} = toRefs(props)

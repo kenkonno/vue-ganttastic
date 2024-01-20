@@ -23,6 +23,7 @@
       :highlighted-dates="holidays"
       @today-line-position-x="lineTestFunc"
       :displayTodayLine="true"
+      @on-click-time-unit="onClickTimeUnit"
 
       :mile-stone-list="testMileStoneList"
     >
@@ -131,6 +132,9 @@ const lineTestFunc = (e: { xPosition: Number }) => {
   console.log("###############", e.xPosition)
 }
 
+const onClickTimeUnit = (date: Date) => {
+  console.log(date)
+}
 
 const bars1 = ref<GanttBarObject[]>([
   {
