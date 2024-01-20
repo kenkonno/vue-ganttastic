@@ -133,11 +133,11 @@ const lineTestFunc = (e: { xPosition: Number }) => {
   console.log("###############", e.xPosition)
 }
 
-const onClickTimeUnit = (date: Date) => {
-  console.log(date)
+const onClickTimeUnit = (e: { date: Date }) => {
+  console.log(e.date)
 }
-const onClickMilestone = (milestone: MileStone) => {
-  console.log(milestone)
+const onClickMilestone = (e: { milestone: MileStone }) => {
+  console.log(e.milestone)
 }
 
 const bars1 = ref<GanttBarObject[]>([
