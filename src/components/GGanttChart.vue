@@ -10,7 +10,7 @@
     class="g-gantt-chart"
     :style="{ width, background: colors.background, fontFamily: font }"
   >
-    <g-gantt-timeaxis v-if="!hideTimeaxis">
+    <g-gantt-timeaxis v-if="!hideTimeaxis" :mile-stone-list="mileStoneList">
       <template #upper-timeunit="{ label, value, date }">
         <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
         <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
@@ -60,7 +60,7 @@ import GGanttBarTooltip from "./GGanttBarTooltip.vue"
 import {colorSchemes, type ColorScheme} from "../color-schemes.js"
 import type {ColorSchemeKey} from "../color-schemes.js"
 import {CHART_ROWS_KEY, CONFIG_KEY, EMIT_BAR_EVENT_KEY} from "../provider/symbols.js"
-import type {GanttBarObject} from "../types"
+import type {GanttBarObject, MileStone} from "../types"
 import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
 import {useElementSize} from "@vueuse/core"
 import GGanttFooter from "./GGanttFooter.vue";
@@ -87,7 +87,7 @@ export interface GGanttChartProps {
   footerLabels?: string[]
   sticky?: boolean
   displayTodayLine?: boolean
-
+  mileStoneList: MileStone[]
 }
 
 export type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {

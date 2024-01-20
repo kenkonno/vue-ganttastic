@@ -5,7 +5,7 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter.js"
 import isBetween from "dayjs/plugin/isBetween.js"
 import customParseFormat from "dayjs/plugin/customParseFormat.js"
 
-import type {GanttBarObject} from "./types.js"
+import type {GanttBarObject, MileStone} from "./types.js"
 import type {ColorScheme} from "./color-schemes"
 
 import GGanttChart from "./components/GGanttChart.vue"
@@ -19,7 +19,7 @@ export function extendDayjs() {
   dayjs.extend(customParseFormat)
 }
 
-export type {ColorScheme, GanttBarObject}
+export type {ColorScheme, GanttBarObject, MileStone}
 export {GGanttChart, GGanttRow, GGanttLabelRow}
 
 export const ganttastic: Plugin = {
