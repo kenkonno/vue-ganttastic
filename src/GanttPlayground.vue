@@ -26,6 +26,7 @@
       @on-click-time-unit="onClickTimeUnit"
 
       :mile-stone-list="testMileStoneList"
+      @on-click-milestone="onClickMilestone"
     >
       <g-gantt-row :bars="item" v-for="(item, index) in bars" :key="index"/>
       <template #side-menu>
@@ -134,6 +135,9 @@ const lineTestFunc = (e: { xPosition: Number }) => {
 
 const onClickTimeUnit = (date: Date) => {
   console.log(date)
+}
+const onClickMilestone = (milestone: MileStone) => {
+  console.log(milestone)
 }
 
 const bars1 = ref<GanttBarObject[]>([

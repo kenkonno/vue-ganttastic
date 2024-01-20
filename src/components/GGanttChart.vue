@@ -1,6 +1,7 @@
 <template>
   <div style=" display:flex; flex-flow: column;"
-       :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''" class="g-gantt-wrapper">
+       :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''"
+       class="g-gantt-wrapper">
     <slot name="side-menu">
     </slot>
   </div>
@@ -10,7 +11,9 @@
     class="g-gantt-chart"
     :style="{ width, background: colors.background, fontFamily: font }"
   >
-    <g-gantt-timeaxis v-if="!hideTimeaxis" :mile-stone-list="mileStoneList" @on-click-time-unit="$emit('onClickTimeUnit', $event)">
+    <g-gantt-timeaxis v-if="!hideTimeaxis" :mile-stone-list="mileStoneList"
+                      @on-click-time-unit="$emit('onClickTimeUnit', $event)"
+                      @on-click-milestone="$emit('onClickMilestone', $event)">
       <template #upper-timeunit="{ label, value, date }">
         <!-- expose upper-timeunit slot of g-gantt-timeaxis-->
         <slot name="upper-timeunit" :label="label" :value="value" :date="date"/>
@@ -35,7 +38,8 @@
         <slot name="bar-tooltip" :bar="tooltipBar"/>
       </template>
     </g-gantt-bar-tooltip>
-    <g-gantt-draw-todays-line v-if="displayTodayLine" @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
+    <g-gantt-draw-todays-line v-if="displayTodayLine"
+                              @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
   </div>
   <div>
     <slot name="footer"/>
@@ -135,8 +139,9 @@ const emit = defineEmits<{
     e: "contextmenu-bar",
     value: { bar: GanttBarObject; e: MouseEvent; datetime?: string | Date }
   ): void
-  (e: "today-line-position-x", value: {xPosition: Number}): void
-  (e: "onClickTimeUnit", value: {date: Date}): void
+  (e: "today-line-position-x", value: { xPosition: Number }): void
+  (e: "onClickTimeUnit", value: { date: Date }): void
+  (e: "onClickMilestone", value: { milestone: MileStone }): void
 }>()
 
 const {width, font, colorScheme} = toRefs(props)
