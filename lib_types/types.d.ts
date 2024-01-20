@@ -18,3 +18,7 @@ export declare type GanttBarObject = {
     endDate: string;
     ganttBarConfig: GanttBarConfig;
 };
+export declare type MileStone = {
+    date: Date;
+    description: string;
+};

@@ -29,7 +29,7 @@
           alignItems: precision === 'hour' ? '' : 'center',
           width
         }"
-        @click="emits('onClickTimeUnit',date)"
+        @click="emits('onClickTimeUnit',{date: date})"
       >
         <slot name="timeunit" :label="label" :value="value" :date="date">
           {{ label }}
@@ -58,7 +58,8 @@
         <slot name="timeunit" :label="label" :value="value" :date="date"
               v-if="isMileStoneDate(date)">
           <p class="milestone-description">▼
-            <span class="milestone-description" @click="emits('onClickMilestone',getMilestone(date))">{{
+            <span class="milestone-description"
+                  @click="emits('onClickMilestone',{milestone:getMilestone(date)})">{{
                 getMilestone(date).description
               }}</span>
           </p>
@@ -81,7 +82,10 @@ type GGanttTimeaxisProps = {
   mileStoneList: MileStone[]
 }
 
-const emits = defineEmits(["onClickTimeUnit","onClickMilestone"])
+const emits = defineEmits<{
+  (e: "onClickTimeUnit", value: { date: Date }): void
+  (e: "onClickMilestone", value: { milestone: MileStone }): void
+}>()
 
 const props = defineProps<GGanttTimeaxisProps>()
 const {precision, colors} = provideConfig()
@@ -104,9 +108,9 @@ const isMileStoneDate = (date: Date) => {
 }
 const getMilestone = (date: Date) => {
   if (precision.value == "week") {
-    return props.mileStoneList.find(v => getMonday(v.date).getTime() === getMonday(date).getTime())
+    return props.mileStoneList.find(v => getMonday(v.date).getTime() === getMonday(date).getTime())!
   } else {
-    return props.mileStoneList.find(v => v.date.getTime() === date.getTime())
+    return props.mileStoneList.find(v => v.date.getTime() === date.getTime())!
   }
 }
 

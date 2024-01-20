@@ -1,11 +1,11 @@
 import type { Plugin } from "vue";
-import type { GanttBarObject } from "./types.js";
+import type { GanttBarObject, MileStone } from "./types.js";
 import type { ColorScheme } from "./color-schemes";
 import GGanttChart from "./components/GGanttChart.vue";
 import GGanttRow from "./components/GGanttRow.vue";
 import GGanttLabelRow from "./components/GGanttLabelRow.vue";
 export declare function extendDayjs(): void;
-export type { ColorScheme, GanttBarObject };
+export type { ColorScheme, GanttBarObject, MileStone };
 export { GGanttChart, GGanttRow, GGanttLabelRow };
 export declare const ganttastic: Plugin;
 export default ganttastic;

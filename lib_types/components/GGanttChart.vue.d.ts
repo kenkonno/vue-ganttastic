@@ -1,7 +1,7 @@
 import { type ComputedRef, type Ref, type ToRefs } from "vue";
 import { type ColorScheme } from "../color-schemes.js";
 import type { ColorSchemeKey } from "../color-schemes.js";
-import type { GanttBarObject } from "../types";
+import type { GanttBarObject, MileStone } from "../types";
 export interface GGanttChartProps {
     chartStart: string | Date;
     chartEnd: string | Date;
@@ -21,6 +21,7 @@ export interface GGanttChartProps {
     footerLabels?: string[];
     sticky?: boolean;
     displayTodayLine?: boolean;
+    mileStoneList: MileStone[];
 }
 export declare type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
     colors: ComputedRef<ColorScheme>;
@@ -58,6 +59,12 @@ declare const _default: {
             highlightedDates: () => never[];
             font: string;
         }>>> & {
+            onOnClickTimeUnit?: ((value: {
+                date: Date;
+            }) => any) | undefined;
+            onOnClickMilestone?: ((value: {
+                milestone: MileStone;
+            }) => any) | undefined;
             "onToday-line-position-x"?: ((value: {
                 xPosition: Number;
             }) => any) | undefined;
@@ -118,7 +125,11 @@ declare const _default: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-        $emit: ((event: "today-line-position-x", value: {
+        $emit: ((event: "onClickTimeUnit", value: {
+            date: Date;
+        }) => void) & ((event: "onClickMilestone", value: {
+            milestone: MileStone;
+        }) => void) & ((event: "today-line-position-x", value: {
             xPosition: Number;
         }) => void) & ((event: "click-bar", value: {
             bar: GanttBarObject;
@@ -170,6 +181,12 @@ declare const _default: {
             highlightedDates: () => never[];
             font: string;
         }>>> & {
+            onOnClickTimeUnit?: ((value: {
+                date: Date;
+            }) => any) | undefined;
+            onOnClickMilestone?: ((value: {
+                milestone: MileStone;
+            }) => any) | undefined;
             "onToday-line-position-x"?: ((value: {
                 xPosition: Number;
             }) => any) | undefined;
@@ -277,6 +294,14 @@ declare const _default: {
             "today-line-position-x": (value: {
                 xPosition: Number;
             }) => void;
+        } & {
+            onClickTimeUnit: (value: {
+                date: Date;
+            }) => void;
+        } & {
+            onClickMilestone: (value: {
+                milestone: MileStone;
+            }) => void;
         }, string, {
             precision: "hour" | "day" | "week" | "month";
             dateFormat: string | false;
@@ -322,6 +347,12 @@ declare const _default: {
         highlightedDates: () => never[];
         font: string;
     }>>> & {
+        onOnClickTimeUnit?: ((value: {
+            date: Date;
+        }) => any) | undefined;
+        onOnClickMilestone?: ((value: {
+            milestone: MileStone;
+        }) => any) | undefined;
         "onToday-line-position-x"?: ((value: {
             xPosition: Number;
         }) => any) | undefined;
@@ -387,6 +418,12 @@ declare const _default: {
     highlightedDates: () => never[];
     font: string;
 }>>> & {
+    onOnClickTimeUnit?: ((value: {
+        date: Date;
+    }) => any) | undefined;
+    onOnClickMilestone?: ((value: {
+        milestone: MileStone;
+    }) => any) | undefined;
     "onToday-line-position-x"?: ((value: {
         xPosition: Number;
     }) => any) | undefined;
@@ -493,6 +530,14 @@ declare const _default: {
 } & {
     "today-line-position-x": (value: {
         xPosition: Number;
+    }) => void;
+} & {
+    onClickTimeUnit: (value: {
+        date: Date;
+    }) => void;
+} & {
+    onClickMilestone: (value: {
+        milestone: MileStone;
     }) => void;
 }, string, {
     precision: "hour" | "day" | "week" | "month";
