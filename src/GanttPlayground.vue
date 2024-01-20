@@ -23,6 +23,10 @@
       :highlighted-dates="holidays"
       @today-line-position-x="lineTestFunc"
       :displayTodayLine="true"
+      @on-click-time-unit="onClickTimeUnit"
+
+      :mile-stone-list="testMileStoneList"
+      @on-click-milestone="onClickMilestone"
     >
       <g-gantt-row :bars="item" v-for="(item, index) in bars" :key="index"/>
       <template #side-menu>
@@ -68,6 +72,7 @@ html, body, #app, #app > div {
   padding: 0;
   margin: 0;
 }
+
 .hide-scroll-bar::-webkit-scrollbar {
   display: none;
 }
@@ -102,9 +107,13 @@ table tr td {
 
 <script setup lang="ts">
 import {ref} from "vue"
-import type {GanttBarObject} from "./types.js"
+import type {GanttBarObject, MileStone} from "./types.js"
 import GGanttChart from "./components/GGanttChart.vue";
 import GGanttLabelRow from "./components/GGanttLabelRow.vue"
+
+const testMileStoneList: MileStone[] = [
+  {date: new Date("2023-08-08 00:00:00"), description: "説明文説明文説明文説明文説明文"}
+]
 
 const holidays = [new Date('2023-05-20 00:00:00')]
 
@@ -120,10 +129,16 @@ const syncWidth = () => {
   return {width: parentWidth + "px", overflow: 'scroll'}
 }
 
-const lineTestFunc = (e: {xPosition: Number}) => {
+const lineTestFunc = (e: { xPosition: Number }) => {
   console.log("###############", e.xPosition)
 }
 
+const onClickTimeUnit = (date: Date) => {
+  console.log(date)
+}
+const onClickMilestone = (milestone: MileStone) => {
+  console.log(milestone)
+}
 
 const bars1 = ref<GanttBarObject[]>([
   {

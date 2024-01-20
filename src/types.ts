@@ -20,3 +20,7 @@ export type GanttBarObject = {
   endDate: string,
   ganttBarConfig: GanttBarConfig,
 }
+export type MileStone = {
+  date: Date
+  description: string
+}

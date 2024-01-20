@@ -1,6 +1,6 @@
 <template>
   <div class="g-timeaxis">
-    <div class="g-timeunits-container">
+    <div class="g-timeunits-container" :style="gTimeunitsContainerMinHeight">
       <div
         v-for="({ label, value, date, width }, index) in timeaxisUnits.upperUnits"
         :key="date.getTime()"
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="g-timeunits-container">
+    <div class="g-timeunits-container" :style="gTimeunitsContainerMinHeight">
       <div
         v-for="({ label, value, date, width }, index) in timeaxisUnits.lowerUnits"
         :key="date.getTime()"
@@ -29,6 +29,7 @@
           alignItems: precision === 'hour' ? '' : 'center',
           width
         }"
+        @click="emits('onClickTimeUnit',date)"
       >
         <slot name="timeunit" :label="label" :value="value" :date="date">
           {{ label }}
@@ -40,15 +41,81 @@
         />
       </div>
     </div>
+
+    <div class="g-timeunits-container" v-if="mileStoneList?.length > 0"
+         :style="gTimeunitsContainerMinHeight">
+      <div
+        v-for="({ label, value, date, width }, index) in timeaxisUnits.lowerUnits"
+        :key="date.getTime()"
+        class="g-timeunit"
+        :style="{
+          color: colors.text,
+          flexDirection: precision === 'hour' ? 'column' : 'row',
+          alignItems: precision === 'hour' ? '' : 'center',
+          width
+        }"
+      >
+        <slot name="timeunit" :label="label" :value="value" :date="date"
+              v-if="isMileStoneDate(date)">
+          <p class="milestone-description">▼
+            <span class="milestone-description" @click="emits('onClickMilestone',getMilestone(date))">{{
+                getMilestone(date).description
+              }}</span>
+          </p>
+        </slot>
+        <div
+          v-if="precision === 'hour'"
+          class="g-timeaxis-hour-pin"
+          :style="{ background: colors.text }"
+        />
+      </div>
+    </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import provideConfig from "../provider/provideConfig.js"
 import useTimeaxisUnits from "../composables/useTimeaxisUnits.js"
+import type {MileStone} from "../types";
 
-const { precision, colors } = provideConfig()
-const { timeaxisUnits } = useTimeaxisUnits()
+type GGanttTimeaxisProps = {
+  mileStoneList: MileStone[]
+}
+
+const emits = defineEmits(["onClickTimeUnit","onClickMilestone"])
+
+const props = defineProps<GGanttTimeaxisProps>()
+const {precision, colors} = provideConfig()
+const {timeaxisUnits} = useTimeaxisUnits()
+
+const gTimeunitsContainerMinHeight = () => {
+  if (props.mileStoneList?.length > 0) {
+    return {minHeight: "33%"}
+  } else {
+    return {height: "50%"}
+  }
+}
+
+const isMileStoneDate = (date: Date) => {
+  if (precision.value == "week") {
+    return props.mileStoneList.map(v => getMonday(v.date).getTime()).includes(getMonday(date).getTime())
+  } else {
+    return props.mileStoneList.map(v => v.date.getTime()).includes(date.getTime())
+  }
+}
+const getMilestone = (date: Date) => {
+  if (precision.value == "week") {
+    return props.mileStoneList.find(v => getMonday(v.date).getTime() === getMonday(date).getTime())
+  } else {
+    return props.mileStoneList.find(v => v.date.getTime() === date.getTime())
+  }
+}
+
+function getMonday(d: Date) {
+  d = new Date(d);
+  let day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
+}
 </script>
 
 <style>
@@ -90,4 +157,13 @@ const { timeaxisUnits } = useTimeaxisUnits()
   width: 1px;
   height: 10px;
 }
+
+.milestone-description {
+  margin: 0;
+}
+
+.milestone-description > span {
+  position: absolute;
+}
+
 </style>
