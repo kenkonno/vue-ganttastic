@@ -24,7 +24,7 @@
       </template>
     </g-gantt-timeaxis>
 
-    <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates" $ref="gGanttGrid"/>
+    <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates" ref="gGanttGrid"/>
 
     <div class="g-gantt-rows-container">
       <slot/>
@@ -243,6 +243,7 @@ const emitBarEvent = (
 }
 
 const ganttChart = ref<HTMLElement | null>(null)
+const gGanttGrid = ref<HTMLElement | null>(null)
 const chartSize = useElementSize(ganttChart)
 
 provide(CHART_ROWS_KEY, getChartRows)
