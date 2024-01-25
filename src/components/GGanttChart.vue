@@ -1,7 +1,8 @@
 <template>
   <div style=" display:flex; flex-flow: column;"
        :style="sticky ? 'position: sticky; left:0;z-index:100; background: white;':''"
-       class="g-gantt-wrapper">
+       class="g-gantt-wrapper"
+  ref="gGanttWrapperRef">
     <slot name="side-menu">
     </slot>
   </div>
@@ -26,7 +27,7 @@
 
     <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
 
-    <div class="g-gantt-rows-container" ref="gGanttRowsContainer">
+    <div class="g-gantt-rows-container">
       <slot/>
       <!-- the g-gantt-row components go here -->
     </div>
@@ -243,7 +244,7 @@ const emitBarEvent = (
 }
 
 const ganttChart = ref<HTMLElement | null>(null)
-const gGanttRowsContainer = ref<HTMLElement | null>(null)
+const gGanttWrapperRef = ref<HTMLElement | null>(null)
 const chartSize = useElementSize(ganttChart)
 
 provide(CHART_ROWS_KEY, getChartRows)
