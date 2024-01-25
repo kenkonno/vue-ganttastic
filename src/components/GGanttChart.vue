@@ -24,7 +24,7 @@
       </template>
     </g-gantt-timeaxis>
 
-    <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
+    <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates" $ref="gGanttGrid"/>
 
     <div class="g-gantt-rows-container">
       <slot/>
