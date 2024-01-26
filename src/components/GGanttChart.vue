@@ -27,6 +27,8 @@
 
     <div class="g-gantt-rows-container">
       <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
+      <g-gantt-draw-todays-line v-if="displayTodayLine"
+                                @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
       <slot/>
       <!-- the g-gantt-row components go here -->
     </div>
@@ -38,8 +40,6 @@
         <slot name="bar-tooltip" :bar="tooltipBar"/>
       </template>
     </g-gantt-bar-tooltip>
-    <g-gantt-draw-todays-line v-if="displayTodayLine"
-                              @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
   </div>
   <div>
     <slot name="footer"/>

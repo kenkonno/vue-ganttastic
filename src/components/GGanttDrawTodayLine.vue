@@ -1,6 +1,6 @@
 <template>
   <div class="today-line"
-       :style="{left: xStart + 'px'}">
+       :style="{left: xStart + 'px', top: 0}">
   </div>
 </template>
 
