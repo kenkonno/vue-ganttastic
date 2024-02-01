@@ -43,32 +43,12 @@
     </div>
 
     <div class="g-timeunits-container" v-if="mileStoneList?.length > 0"
-         :style="gTimeunitsContainerMinHeight">
-      <div
-        v-for="({ label, value, date, width }, index) in timeaxisUnits.lowerUnits"
-        :key="date.getTime()"
-        class="g-timeunit"
-        :style="{
-          color: colors.text,
-          flexDirection: precision === 'hour' ? 'column' : 'row',
-          alignItems: precision === 'hour' ? '' : 'center',
-          width
-        }"
-      >
-        <slot name="timeunit" :label="label" :value="value" :date="date"
-              v-if="isMileStoneDate(date)">
-          <p class="milestone-description">▼
-            <span class="milestone-description"
-                  @click="emits('onClickMilestone',{milestone:getMilestone(date)})">{{
-                getMilestone(date).description
-              }}</span>
-          </p>
-        </slot>
-        <div
-          v-if="precision === 'hour'"
-          class="g-timeaxis-hour-pin"
-          :style="{ background: colors.text }"
-        />
+         :style="gTimeunitsContainerMinHeight" style="position: relative">
+      <div v-for="item in mileStoneList"
+           :style="{left: xStart(item.date) + 'px', top: 0, position: 'absolute'}">
+        <p class="milestone-description milestone-description-mark">▼</p>
+        <span class="milestone-description"
+              @click="emits('onClickMilestone',{milestone:item})">{{ item.description }}</span>
       </div>
     </div>
   </div>
@@ -77,6 +57,9 @@
 import provideConfig from "../provider/provideConfig.js"
 import useTimeaxisUnits from "../composables/useTimeaxisUnits.js"
 import type {MileStone} from "../types";
+import useTimePositionMapping from "../composables/useTimePositionMapping";
+import {computed} from "vue";
+import dayjs from "dayjs";
 
 type GGanttTimeaxisProps = {
   mileStoneList: MileStone[]
@@ -98,14 +81,12 @@ const gTimeunitsContainerMinHeight = () => {
     return {height: "50%"}
   }
 }
-
-const isMileStoneDate = (date: Date) => {
-  if (precision.value == "week") {
-    return props.mileStoneList.map(v => getMonday(v.date).getTime()).includes(getMonday(date).getTime())
-  } else {
-    return props.mileStoneList.map(v => v.date.getTime()).includes(date.getTime())
-  }
+const {mapTimeToPosition} = useTimePositionMapping()
+// FORMAT IS DD.MM.YYYY HH:mm
+const xStart = (date: Date) => {
+  return mapTimeToPosition(dayjs(date).startOf('day').format("DD.MM.YYYY HH:mm"))
 }
+
 const getMilestone = (date: Date) => {
   if (precision.value == "week") {
     return props.mileStoneList.find(v => getMonday(v.date).getTime() === getMonday(date).getTime())!
@@ -162,12 +143,19 @@ function getMonday(d: Date) {
   height: 10px;
 }
 
+.milestone-description-mark {
+  width: 24px;
+  margin-left: -11px !important;
+  text-align: center;
+}
+
 .milestone-description {
   margin: 0;
+  display: inline-block;
+  font-size: 0.8rem;
 }
 
 .milestone-description > span {
-  position: absolute;
 }
 
 </style>

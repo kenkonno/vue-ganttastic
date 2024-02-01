@@ -27,6 +27,7 @@
 
       :mile-stone-list="testMileStoneList"
       @on-click-milestone="onClickMilestone"
+      :vertical-lines="verticalLines"
     >
       <g-gantt-row :bars="item" v-for="(item, index) in bars" :key="index"/>
       <template #side-menu>
@@ -107,12 +108,16 @@ table tr td {
 
 <script setup lang="ts">
 import {ref} from "vue"
-import type {GanttBarObject, MileStone} from "./types.js"
+import type {GanttBarObject, MileStone, VerticalLine} from "./types.js"
 import GGanttChart from "./components/GGanttChart.vue";
-import GGanttLabelRow from "./components/GGanttLabelRow.vue"
+import dayjs from "dayjs";
+
+const verticalLines: VerticalLine[] = [
+  {color: "blue", date: dayjs("2023-08-19")}
+]
 
 const testMileStoneList: MileStone[] = [
-  {date: new Date("2023-08-08 00:00:00"), description: "説明文説明文説明文説明文説明文"}
+  {date: new Date("2023-08-19 00:00:00"), description: "説明文説明文説明文説明文説明文"}
 ]
 
 const holidays = [new Date('2023-05-20 00:00:00')]

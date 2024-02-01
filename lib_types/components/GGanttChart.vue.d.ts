@@ -1,7 +1,7 @@
 import { type ComputedRef, type Ref, type ToRefs } from "vue";
 import { type ColorScheme } from "../color-schemes.js";
 import type { ColorSchemeKey } from "../color-schemes.js";
-import type { GanttBarObject, MileStone } from "../types";
+import type { GanttBarObject, MileStone, VerticalLine } from "../types";
 export interface GGanttChartProps {
     chartStart: string | Date;
     chartEnd: string | Date;
@@ -22,6 +22,7 @@ export interface GGanttChartProps {
     sticky?: boolean;
     displayTodayLine?: boolean;
     mileStoneList: MileStone[];
+    verticalLines: VerticalLine[];
 }
 export declare type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
     colors: ComputedRef<ColorScheme>;

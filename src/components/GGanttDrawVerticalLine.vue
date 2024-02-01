@@ -1,6 +1,6 @@
 <template>
   <div class="vertical-line"
-       :style="{left: xStart + 'px', top: 0}">
+       :style="{left: xStart + 'px', top: 0, backgroundColor: color}">
   </div>
 </template>
 
@@ -8,16 +8,19 @@
 
 import {computed} from "vue";
 import useTimePositionMapping from "../composables/useTimePositionMapping";
-import dayjs from "dayjs";
+import type {Dayjs} from "dayjs";
+
+export interface VerticalLineIF {
+  date: Dayjs
+  color: string
+}
+
+const props = defineProps<VerticalLineIF>()
 
 const {mapTimeToPosition} = useTimePositionMapping()
-const emit = defineEmits<{
-  (e: "today-line-position-x", value: { xPosition: Number }): void
-}>()
 // FORMAT IS DD.MM.YYYY HH:mm
 const xStart = computed(() => {
-  emit("today-line-position-x", {xPosition: mapTimeToPosition(dayjs().startOf('day').format("DD.MM.YYYY HH:mm"))})
-  return mapTimeToPosition(dayjs().startOf('day').format("DD.MM.YYYY HH:mm"))
+  return mapTimeToPosition(props.date.startOf('day').format("DD.MM.YYYY HH:mm"))
 })
 </script>
 

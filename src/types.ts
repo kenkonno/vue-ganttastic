@@ -1,4 +1,5 @@
 import type {CSSProperties} from "vue"
+import type {Dayjs} from "dayjs";
 
 export type GanttBarConfig = {
   id: string
@@ -24,3 +25,9 @@ export type MileStone = {
   date: Date
   description: string
 }
+
+export type VerticalLine = {
+  date: Dayjs
+  color: string
+}
+

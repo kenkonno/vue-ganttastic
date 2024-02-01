@@ -29,6 +29,7 @@
       <g-gantt-grid v-if="grid" :highlighted-dates="highlightedDates"/>
       <g-gantt-draw-todays-line v-if="displayTodayLine"
                                 @today-line-position-x="emit('today-line-position-x',$event)"></g-gantt-draw-todays-line>
+      <g-gantt-draw-vertical-line :date="item.date" :color="item.color" v-for="item in verticalLines"></g-gantt-draw-vertical-line>
       <slot/>
       <!-- the g-gantt-row components go here -->
     </div>
@@ -64,13 +65,12 @@ import GGanttBarTooltip from "./GGanttBarTooltip.vue"
 import {colorSchemes, type ColorScheme} from "../color-schemes.js"
 import type {ColorSchemeKey} from "../color-schemes.js"
 import {CHART_ROWS_KEY, CONFIG_KEY, EMIT_BAR_EVENT_KEY} from "../provider/symbols.js"
-import type {GanttBarObject, MileStone} from "../types"
+import type {GanttBarObject, MileStone, VerticalLine} from "../types"
 import {DEFAULT_DATE_FORMAT} from "../composables/useDayjsHelper"
 import {useElementSize} from "@vueuse/core"
 import GGanttFooter from "./GGanttFooter.vue";
 import GGanttDrawTodaysLine from "./GGanttDrawTodayLine.vue";
-import dayjs from "dayjs";
-import useTimePositionMapping from "../composables/useTimePositionMapping";
+import GGanttDrawVerticalLine from "./GGanttDrawVerticalLine.vue";
 
 export interface GGanttChartProps {
   chartStart: string | Date
@@ -92,6 +92,7 @@ export interface GGanttChartProps {
   sticky?: boolean
   displayTodayLine?: boolean
   mileStoneList: MileStone[]
+  verticalLines: VerticalLine[]
 }
 
 export type GGanttChartConfig = ToRefs<Required<GGanttChartProps>> & {
