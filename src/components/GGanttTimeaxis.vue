@@ -45,10 +45,8 @@
     <div class="g-timeunits-container" v-if="mileStoneList?.length > 0"
          :style="gTimeunitsContainerMinHeight" style="position: relative">
       <div v-for="item in mileStoneList"
-           :style="{left: xStart(item.date) + 'px', top: 0, position: 'absolute'}">
-        <p class="milestone-description milestone-description-mark">▼</p>
-        <span class="milestone-description"
-              @click="emits('onClickMilestone',{milestone:item})">{{ item.description }}</span>
+           :style="{left: xStart(item.date) + 'px', top: 0, position: 'absolute'}" @click="emits('onClickMilestone',{milestone:item})">
+        <p class="milestone-description milestone-description-mark">▼{{ item.description }}</p>
       </div>
     </div>
   </div>
@@ -153,6 +151,7 @@ function getMonday(d: Date) {
   margin: 0;
   display: inline-block;
   font-size: 0.8rem;
+  width: 0;
 }
 
 .milestone-description > span {
