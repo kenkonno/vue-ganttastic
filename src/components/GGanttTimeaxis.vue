@@ -152,6 +152,7 @@ function getMonday(d: Date) {
   display: inline-block;
   font-size: 0.8rem;
   width: 0;
+  white-space: nowrap;
 }
 
 .milestone-description > span {
