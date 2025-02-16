@@ -108,10 +108,7 @@ export default function createBarDrag(
     if (toDayjs(newBarEnd).isSameOrBefore(toDayjs(bar, "start"))) {
       return
     }
-    if (bar[barStart.value].substring(0, 10) != mapPositionToTime(xEnd).substring(0, 10)) {
-      const after = mapPositionToTime(xEnd).substring(0, 10) + " 23:59"
-      bar[barEnd.value] = after
-    }
+    bar[barEnd.value] = mapPositionToTime(xEnd).substring(0, 10) + " 23:59"
     onDrag(e, bar)
   }
 

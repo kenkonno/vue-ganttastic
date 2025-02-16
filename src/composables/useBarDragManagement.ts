@@ -124,6 +124,7 @@ export default function useBarDragManagement() {
     minutes: number,
     direction: "left" | "right"
   ) => {
+    console.log("######################################")
     addBarToMovedBars(pushedBar)
     if (!pushedBar.ganttBarConfig.bundle) {
       return
