@@ -14,7 +14,7 @@
           width
         }"
       >
-        <div :style="styles != null ? styles[index] : undefined">
+        <div class="label" :style="styles != null ? styles[index] : undefined">
           {{ labels[index] }}
         </div>
       </div>
@@ -53,4 +53,10 @@ const {timeaxisUnits} = useTimeaxisUnits()
   height: 100%;
 }
 
+.label {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
 </style>
