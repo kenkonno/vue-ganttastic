@@ -14,9 +14,9 @@
           width
         }"
       >
-        <span :style="styles != null ? styles[index] : undefined">
+        <div :style="styles != null ? styles[index] : undefined">
           {{ labels[index] }}
-        </span>
+        </div>
       </div>
     </div>
   </div>
