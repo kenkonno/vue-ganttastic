@@ -54,9 +54,10 @@ const {timeaxisUnits} = useTimeaxisUnits()
 }
 
 .label {
+  display: flex;
   width: 100%;
   height: 100%;
-  text-align: center;
-  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
 }
 </style>
