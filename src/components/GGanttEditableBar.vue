@@ -69,7 +69,7 @@ const props = defineProps<{
   bar: GanttBarObject
 }>()
 const emit = defineEmits<{
-  (e: 'update', value: { bar: GanttBarObject, newValue: number }): void
+  (e: 'update', value: { bar: GanttBarObject, newValue: number | undefined }): void
 }>()
 const emitBarEvent = provideEmitBarEvent()
 const config = provideConfig()
@@ -134,10 +134,11 @@ const onBarClick = (e: MouseEvent) => {
   isEditing.value = true
   editValue.value = barConfig.value.label || ''
 
-  // フォーカスを入力フィールドに設定
+  // フォーカスを入力フィールドに設定し、全て選択する
   nextTick(() => {
     if (inputRef.value) {
       inputRef.value.focus()
+      inputRef.value.select() // 全て選択
     }
   })
 }
@@ -156,9 +157,20 @@ const finishEdit = () => {
   if (!isEditing.value) return
 
   isEditing.value = false
+
+  // 空文字の場合はundefinedとする
+  if (editValue.value.trim() === '') {
+    // バーの表示ラベルを更新
+    barConfig.value.label = ''
+
+    // 親コンポーネントに更新を通知
+    emit('update', {bar: bar.value, newValue: undefined})
+    return
+  }
+
   const numValue = parseInt(editValue.value)
 
-  // 空の場合や不正な値の場合は0とする
+  // 不正な値の場合は0とする
   const validValue = isNaN(numValue) ? 0 : Math.max(0, numValue)
 
   // 値が変更された場合のみイベントを発火

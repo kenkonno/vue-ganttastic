@@ -232,7 +232,7 @@ const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string 
   console.log("contextmenu-bar", bar, e, datetime)
 }
 
-const onBarUpdate = (bar: GanttBarObject, newValue: number) => {
+const onBarUpdate = (bar: GanttBarObject, newValue: number | undefined) => {
   console.log("bar-update", bar, newValue)
 }
 </script>
