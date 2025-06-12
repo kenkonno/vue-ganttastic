@@ -211,9 +211,7 @@ const emitBarEvent = (
   if (typeof e === 'string') {
     switch (e) {
       case "bar-update":
-        if (newValue !== undefined) {
-          emit("bar-update", {bar, newValue})
-        }
+        emit("bar-update", {bar, newValue})
         break
     }
     return
