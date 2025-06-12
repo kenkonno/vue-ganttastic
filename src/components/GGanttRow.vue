@@ -46,7 +46,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "drop", value: { e: MouseEvent; datetime: string | Date }): void
-  (e: "bar-update", value: { bar: GanttBarObject, newValue: number }): void
+  (e: "bar-update", value: { bar: GanttBarObject, newValue: number | undefined }): void
 }>()
 
 const {rowHeight, colors} = provideConfig()
@@ -77,7 +77,7 @@ const onDrop = (e: MouseEvent) => {
   emit("drop", {e, datetime})
 }
 
-const onBarUpdate = (value: { bar: GanttBarObject, newValue: number }) => {
+const onBarUpdate = (value: { bar: GanttBarObject, newValue: number | undefined }) => {
   // 親コンポーネントに更新を通知
   emit("bar-update", value)
 

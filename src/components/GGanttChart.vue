@@ -143,7 +143,7 @@ const emit = defineEmits<{
   (e: "today-line-position-x", value: { xPosition: Number }): void
   (e: "onClickTimeUnit", value: { date: Date }): void
   (e: "onClickMilestone", value: { milestone: MileStone }): void
-  (e: "bar-update", value: { bar: GanttBarObject, newValue: number }): void
+  (e: "bar-update", value: { bar: GanttBarObject, newValue: number | undefined }): void
 }>()
 
 const {width, font, colorScheme} = toRefs(props)
@@ -205,7 +205,7 @@ const emitBarEvent = (
   bar: GanttBarObject,
   datetime?: string | Date,
   movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>,
-  newValue?: number
+  newValue?: number | undefined
 ) => {
   // 文字列の場合はカスタムイベント
   if (typeof e === 'string') {

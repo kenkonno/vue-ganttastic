@@ -116,7 +116,7 @@ declare const _default: {
             }) => any) | undefined;
           "onBar-update"?: ((value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
           }) => any) | undefined;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "dateFormat" | "width" | "hideTimeaxis" | "colorScheme" | "grid" | "pushOnOverlap" | "noOverlap" | "rowHeight" | "highlightedDates" | "font">;
         $attrs: {
@@ -173,7 +173,7 @@ declare const _default: {
             datetime?: string | Date | undefined;
         }) => void) & ((event: "bar-update", value: {
           bar: GanttBarObject;
-          newValue: number;
+          newValue: number | undefined;
         }) => void);
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<GGanttChartProps>, {
@@ -245,7 +245,7 @@ declare const _default: {
             }) => any) | undefined;
           "onBar-update"?: ((value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
           }) => any) | undefined;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             "click-bar": (value: {
@@ -317,7 +317,7 @@ declare const _default: {
         } & {
           "bar-update": (value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
           }) => void;
         }, string, {
             precision: "hour" | "day" | "week" | "month";
@@ -420,7 +420,7 @@ declare const _default: {
         }) => any) | undefined;
       "onBar-update"?: ((value: {
         bar: GanttBarObject;
-        newValue: number;
+        newValue: number | undefined;
       }) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
@@ -495,7 +495,7 @@ declare const _default: {
     }) => any) | undefined;
   "onBar-update"?: ((value: {
     bar: GanttBarObject;
-    newValue: number;
+    newValue: number | undefined;
     }) => any) | undefined;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "click-bar": (value: {
@@ -567,7 +567,7 @@ declare const _default: {
 } & {
   "bar-update": (value: {
     bar: GanttBarObject;
-    newValue: number;
+    newValue: number | undefined;
   }) => void;
 }, string, {
     precision: "hour" | "day" | "week" | "month";

@@ -13,7 +13,7 @@ declare const _default: {
             }) => any) | undefined;
           "onBar-update"?: ((value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
           }) => any) | undefined;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, never>;
         $attrs: {
@@ -29,7 +29,7 @@ declare const _default: {
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
       $emit: ((event: "bar-update", value: {
         bar: GanttBarObject;
-        newValue: number;
+        newValue: number | undefined;
       }) => void) & ((event: "drop", value: {
             e: MouseEvent;
             datetime: string | Date;
@@ -45,7 +45,7 @@ declare const _default: {
             }) => any) | undefined;
           "onBar-update"?: ((value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
             }) => any) | undefined;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             drop: (value: {
@@ -55,7 +55,7 @@ declare const _default: {
         } & {
           "bar-update": (value: {
             bar: GanttBarObject;
-            newValue: number;
+            newValue: number | undefined;
           }) => void;
         }, string, {}> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
@@ -87,7 +87,7 @@ declare const _default: {
         }) => any) | undefined;
       "onBar-update"?: ((value: {
         bar: GanttBarObject;
-        newValue: number;
+        newValue: number | undefined;
       }) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
@@ -103,7 +103,7 @@ declare const _default: {
     }) => any) | undefined;
   "onBar-update"?: ((value: {
     bar: GanttBarObject;
-    newValue: number;
+    newValue: number | undefined;
   }) => any) | undefined;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     drop: (value: {
@@ -113,7 +113,7 @@ declare const _default: {
 } & {
   "bar-update": (value: {
     bar: GanttBarObject;
-    newValue: number;
+    newValue: number | undefined;
   }) => void;
 }, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
