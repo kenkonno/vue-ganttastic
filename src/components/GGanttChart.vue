@@ -143,6 +143,7 @@ const emit = defineEmits<{
   (e: "today-line-position-x", value: { xPosition: Number }): void
   (e: "onClickTimeUnit", value: { date: Date }): void
   (e: "onClickMilestone", value: { milestone: MileStone }): void
+  (e: "bar-update", value: { bar: GanttBarObject, newValue: number }): void
 }>()
 
 const {width, font, colorScheme} = toRefs(props)
@@ -200,11 +201,25 @@ const clearTooltip = () => {
 }
 
 const emitBarEvent = (
-  e: MouseEvent,
+  e: MouseEvent | string,
   bar: GanttBarObject,
   datetime?: string | Date,
-  movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>
+  movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>,
+  newValue?: number
 ) => {
+  // 文字列の場合はカスタムイベント
+  if (typeof e === 'string') {
+    switch (e) {
+      case "bar-update":
+        if (newValue !== undefined) {
+          emit("bar-update", {bar, newValue})
+        }
+        break
+    }
+    return
+  }
+
+  // MouseEventの場合は従来の処理
   switch (e.type) {
     case "click":
       emit("click-bar", {bar, e, datetime})

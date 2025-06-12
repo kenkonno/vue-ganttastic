@@ -19,6 +19,7 @@
       @drag-bar="onDragBar($event.bar, $event.e)"
       @dragend-bar="onDragendBar($event.bar, $event.e)"
       @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
+      @bar-update="onBarUpdate($event.bar, $event.newValue)"
       sticky
       :highlighted-dates="holidays"
       @today-line-position-x="lineTestFunc"
@@ -149,6 +150,7 @@ const bars1 = ref<GanttBarObject[]>([
   {
     beginDate: "02.05.2023 00:00",
     endDate: "03.05.2023 23:59",
+    editable: true,
     ganttBarConfig: {
       hasHandles: true,
       id: "8621987329",
@@ -228,5 +230,9 @@ const onDragendBar = (
 
 const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string | Date) => {
   console.log("contextmenu-bar", bar, e, datetime)
+}
+
+const onBarUpdate = (bar: GanttBarObject, newValue: number) => {
+  console.log("bar-update", bar, newValue)
 }
 </script>

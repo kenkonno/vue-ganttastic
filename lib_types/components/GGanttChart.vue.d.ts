@@ -114,6 +114,10 @@ declare const _default: {
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
+          "onBar-update"?: ((value: {
+            bar: GanttBarObject;
+            newValue: number;
+          }) => any) | undefined;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "precision" | "dateFormat" | "width" | "hideTimeaxis" | "colorScheme" | "grid" | "pushOnOverlap" | "noOverlap" | "rowHeight" | "highlightedDates" | "font">;
         $attrs: {
             [x: string]: unknown;
@@ -167,6 +171,9 @@ declare const _default: {
             bar: GanttBarObject;
             e: MouseEvent;
             datetime?: string | Date | undefined;
+        }) => void) & ((event: "bar-update", value: {
+          bar: GanttBarObject;
+          newValue: number;
         }) => void);
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<GGanttChartProps>, {
@@ -236,6 +243,10 @@ declare const _default: {
                 e: MouseEvent;
                 datetime?: string | Date | undefined;
             }) => any) | undefined;
+          "onBar-update"?: ((value: {
+            bar: GanttBarObject;
+            newValue: number;
+          }) => any) | undefined;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             "click-bar": (value: {
                 bar: GanttBarObject;
@@ -303,6 +314,11 @@ declare const _default: {
             onClickMilestone: (value: {
                 milestone: MileStone;
             }) => void;
+        } & {
+          "bar-update": (value: {
+            bar: GanttBarObject;
+            newValue: number;
+          }) => void;
         }, string, {
             precision: "hour" | "day" | "week" | "month";
             dateFormat: string | false;
@@ -402,6 +418,10 @@ declare const _default: {
             e: MouseEvent;
             datetime?: string | Date | undefined;
         }) => any) | undefined;
+      "onBar-update"?: ((value: {
+        bar: GanttBarObject;
+        newValue: number;
+      }) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
@@ -473,6 +493,10 @@ declare const _default: {
         e: MouseEvent;
         datetime?: string | Date | undefined;
     }) => any) | undefined;
+  "onBar-update"?: ((value: {
+    bar: GanttBarObject;
+    newValue: number;
+    }) => any) | undefined;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "click-bar": (value: {
         bar: GanttBarObject;
@@ -540,6 +564,11 @@ declare const _default: {
     onClickMilestone: (value: {
         milestone: MileStone;
     }) => void;
+} & {
+  "bar-update": (value: {
+    bar: GanttBarObject;
+    newValue: number;
+  }) => void;
 }, string, {
     precision: "hour" | "day" | "week" | "month";
     dateFormat: string | false;
@@ -571,6 +600,7 @@ declare const _default: {
                 [x: string]: any;
                 beginDate: string;
                 endDate: string;
+              editable?: boolean | undefined;
                 ganttBarConfig: {
                     id: string;
                     label?: string | undefined;
