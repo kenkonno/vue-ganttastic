@@ -5,10 +5,11 @@ import type { GanttBarObject } from "../types"
 
 export type GetChartRows = () => GanttBarObject[][]
 export type EmitBarEvent = (
-  e: MouseEvent,
+  e: MouseEvent | string,
   bar: GanttBarObject,
   datetime?: string | Date,
-  movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>
+  movedBars?: Map<GanttBarObject, { oldStart: string; oldEnd: string }>,
+  newValue?: number
 ) => void
 
 export const CHART_ROWS_KEY = Symbol("CHART_ROWS_KEY") as InjectionKey<GetChartRows>

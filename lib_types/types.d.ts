@@ -17,6 +17,7 @@ export declare type GanttBarObject = {
     [key: string]: any;
     beginDate: string;
     endDate: string;
+  editable?: boolean;
     ganttBarConfig: GanttBarConfig;
 };
 export declare type MileStone = {

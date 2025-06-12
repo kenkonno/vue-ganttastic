@@ -8,28 +8,36 @@
     @mouseover="isHovering = true"
     @mouseleave="isHovering = false"
   >
-    <div class="g-gantt-row-label" :style="{ background: colors.primary, color: colors.text }" v-if="false">
+    <div class="g-gantt-row-label" :style="{ background: colors.primary, color: colors.text }"
+         v-if="false">
       <slot name="label">
       </slot>
     </div>
     <div ref="barContainer" class="g-gantt-row-bars-container" v-bind="$attrs">
       <transition-group name="bar-transition" tag="div">
-        <g-gantt-bar v-for="bar in bars" :key="bar.ganttBarConfig.id" :bar="bar">
-          <slot name="bar-label" :bar="bar" />
-        </g-gantt-bar>
+        <template v-for="bar in bars" :key="bar.ganttBarConfig.id">
+          <g-gantt-editable-bar :bar="bar" v-if="bar.editable" @update="onBarUpdate">
+            <slot name="bar-label" :bar="bar"/>
+          </g-gantt-editable-bar>
+          <g-gantt-bar :bar="bar" v-else>
+            <slot name="bar-label" :bar="bar"/>
+          </g-gantt-bar>
+        </template>
       </transition-group>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref, toRefs, computed, type StyleValue, provide } from "vue"
+import {ref, type Ref, toRefs, computed, type StyleValue, provide} from "vue"
 
 import useTimePositionMapping from "../composables/useTimePositionMapping.js"
 import provideConfig from "../provider/provideConfig.js"
-import type { GanttBarObject } from "../types"
+import provideEmitBarEvent from "../provider/provideEmitBarEvent.js"
+import type {GanttBarObject} from "../types"
 import GGanttBar from "./GGanttBar.vue"
-import { BAR_CONTAINER_KEY } from "../provider/symbols"
+import {BAR_CONTAINER_KEY} from "../provider/symbols"
+import GGanttEditableBar from "./GGanttEditableBar.vue";
 
 const props = defineProps<{
   bars: GanttBarObject[]
@@ -38,11 +46,13 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "drop", value: { e: MouseEvent; datetime: string | Date }): void
+  (e: "bar-update", value: { bar: GanttBarObject, newValue: number }): void
 }>()
 
-const { rowHeight, colors } = provideConfig()
-const { highlightOnHover } = toRefs(props)
+const {rowHeight, colors} = provideConfig()
+const {highlightOnHover} = toRefs(props)
 const isHovering = ref(false)
+const emitBarEvent = provideEmitBarEvent()
 
 const rowStyle = computed(() => {
   return {
@@ -51,7 +61,7 @@ const rowStyle = computed(() => {
   } as StyleValue
 })
 
-const { mapPositionToTime } = useTimePositionMapping()
+const {mapPositionToTime} = useTimePositionMapping()
 const barContainer: Ref<HTMLElement | null> = ref(null)
 
 provide(BAR_CONTAINER_KEY, barContainer)
@@ -64,7 +74,15 @@ const onDrop = (e: MouseEvent) => {
   }
   const xPos = e.clientX - container.left
   const datetime = mapPositionToTime(xPos)
-  emit("drop", { e, datetime })
+  emit("drop", {e, datetime})
+}
+
+const onBarUpdate = (value: { bar: GanttBarObject, newValue: number }) => {
+  // 親コンポーネントに更新を通知
+  emit("bar-update", value)
+
+  // GGanttChartのemitBarEvent関数を呼び出す
+  emitBarEvent("bar-update", value.bar, undefined, undefined, value.newValue)
 }
 </script>
 
