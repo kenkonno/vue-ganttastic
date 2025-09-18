@@ -11,10 +11,10 @@ declare const _default: {
                 e: MouseEvent;
                 datetime: string | Date;
             }) => any) | undefined;
-          "onBar-update"?: ((value: {
-            bar: GanttBarObject;
-            newValue: number | undefined;
-          }) => any) | undefined;
+            "onBar-update"?: ((value: {
+                bar: GanttBarObject;
+                newValue: number | undefined;
+            }) => any) | undefined;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, never>;
         $attrs: {
             [x: string]: unknown;
@@ -27,13 +27,13 @@ declare const _default: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
-      $emit: ((event: "bar-update", value: {
-        bar: GanttBarObject;
-        newValue: number | undefined;
-      }) => void) & ((event: "drop", value: {
+        $emit: ((event: "bar-update", value: {
+            bar: GanttBarObject;
+            newValue: number | undefined;
+        }) => void) & ((event: "drop", value: {
             e: MouseEvent;
             datetime: string | Date;
-      }) => void);
+        }) => void);
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
             bars: GanttBarObject[];
@@ -43,9 +43,9 @@ declare const _default: {
                 e: MouseEvent;
                 datetime: string | Date;
             }) => any) | undefined;
-          "onBar-update"?: ((value: {
-            bar: GanttBarObject;
-            newValue: number | undefined;
+            "onBar-update"?: ((value: {
+                bar: GanttBarObject;
+                newValue: number | undefined;
             }) => any) | undefined;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
             drop: (value: {
@@ -53,10 +53,10 @@ declare const _default: {
                 datetime: string | Date;
             }) => void;
         } & {
-          "bar-update": (value: {
-            bar: GanttBarObject;
-            newValue: number | undefined;
-          }) => void;
+            "bar-update": (value: {
+                bar: GanttBarObject;
+                newValue: number | undefined;
+            }) => void;
         }, string, {}> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
             created?: ((() => void) | (() => void)[]) | undefined;
@@ -85,10 +85,10 @@ declare const _default: {
             e: MouseEvent;
             datetime: string | Date;
         }) => any) | undefined;
-      "onBar-update"?: ((value: {
-        bar: GanttBarObject;
-        newValue: number | undefined;
-      }) => any) | undefined;
+        "onBar-update"?: ((value: {
+            bar: GanttBarObject;
+            newValue: number | undefined;
+        }) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
@@ -101,20 +101,20 @@ declare const _default: {
         e: MouseEvent;
         datetime: string | Date;
     }) => any) | undefined;
-  "onBar-update"?: ((value: {
-    bar: GanttBarObject;
-    newValue: number | undefined;
-  }) => any) | undefined;
+    "onBar-update"?: ((value: {
+        bar: GanttBarObject;
+        newValue: number | undefined;
+    }) => any) | undefined;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     drop: (value: {
         e: MouseEvent;
         datetime: string | Date;
     }) => void;
 } & {
-  "bar-update": (value: {
-    bar: GanttBarObject;
-    newValue: number | undefined;
-  }) => void;
+    "bar-update": (value: {
+        bar: GanttBarObject;
+        newValue: number | undefined;
+    }) => void;
 }, string, {}> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: {
         label: (_: {}) => any;
